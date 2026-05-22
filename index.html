@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data:;">
+<meta name="referrer" content="no-referrer">
+<title>Luis Flores — Marketing Portfolio</title>
+<!-- Async font load: no render blocking -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap"/></noscript>
+<style>
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#06070f;--teal:#0fd4f5;--teal-dk:#0b6e84;
+  --gold:#f5c842;--purple:#a855f7;--white:#f0f4ff;--gray:#7a8aaa;
+  --glow-t:rgba(15,212,245,.35);--glow-p:rgba(168,85,247,.35);--glow-g:rgba(245,200,66,.45);
+  --card:#0d1432;--border:rgba(255,255,255,.08);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+a{color:var(--teal);text-decoration:none}
+::selection{background:rgba(15,212,245,.25)}
+/* GPU-accelerated canvas — no layout impact */
+#sf{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform}
+/* ── Nav ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
+  padding:0 2rem;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,7,15,.92);border-bottom:1px solid rgba(15,212,245,.12);
+  /* Lighter blur = faster paint */
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  contain:layout style;
+}
+.nlogo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.05rem;color:var(--white);text-shadow:0 0 18px var(--glow-t)}
+.nlogo span{color:var(--teal)}
+.nlinks{display:flex;gap:1.75rem;list-style:none}
+.nlinks a{color:rgba(240,244,255,.55);font-size:.85rem;font-weight:500;transition:color .18s}
+.nlinks a:hover,.nlinks a.active{color:var(--teal);text-decoration:none}
+.ncta{background:linear-gradient(135deg,var(--teal-dk),var(--teal));color:#000!important;padding:.38rem 1.1rem;border-radius:6px;font-weight:700!important}
+/* ── Hero ── */
+#hero{
+  position:relative;z-index:1;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:100px 1.5rem 60px;
+  contain:layout;
+}
+.hi{max-width:820px}
+.hbadge{
+  display:inline-block;font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.14em;color:var(--teal);text-transform:uppercase;
+  border:1px solid rgba(15,212,245,.3);padding:.38rem 1.1rem;border-radius:20px;
+  background:rgba(15,212,245,.05);margin-bottom:1.6rem;
+}
+.hname{
+  font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem,8vw,5.2rem);font-weight:900;
+  line-height:1;color:var(--white);margin-bottom:.5rem;
+  /* Simplified glow — single shadow layer performs better */
+  text-shadow:0 0 40px rgba(15,212,245,.5),0 0 80px rgba(15,212,245,.15);
+  animation:gp 4s ease-in-out infinite;
+}
+@keyframes gp{
+  0%,100%{text-shadow:0 0 30px rgba(15,212,245,.5),0 0 70px rgba(15,212,245,.12)}
+  50%{text-shadow:0 0 50px rgba(15,212,245,.8),0 0 100px rgba(168,85,247,.18)}
+}
+.htitle{font-size:clamp(.95rem,2.5vw,1.28rem);color:var(--teal);font-weight:400;margin-bottom:1.2rem;letter-spacing:.04em}
+.hsum{font-size:1.02rem;color:rgba(240,244,255,.6);max-width:580px;margin:0 auto 2.25rem;line-height:1.75}
+.hstats{display:flex;gap:1.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.25rem}
+.hs{text-align:center}
+.hsv{font-family:'Orbitron',sans-serif;font-size:1.9rem;font-weight:900;color:var(--gold);display:block;text-shadow:0 0 16px var(--glow-g)}
+.hsl{font-size:.7rem;color:rgba(240,244,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem}
+.hdiv{width:1px;background:rgba(15,212,245,.18);align-self:stretch}
+.hbtns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.6rem;border-radius:8px;font-weight:600;font-size:.93rem;transition:all .2s;text-decoration:none;border:none;cursor:pointer}
+.btg{background:linear-gradient(135deg,var(--teal-dk),var(--teal));color:#000;box-shadow:0 0 20px rgba(15,212,245,.3)}
+.btg:hover{box-shadow:0 0 35px rgba(15,212,245,.6);transform:translateY(-2px);text-decoration:none;color:#000}
+.bto{border:1px solid rgba(15,212,245,.3);color:var(--teal);background:rgba(15,212,245,.04)}
+.bto:hover{background:rgba(15,212,245,.1);transform:translateY(-2px);text-decoration:none}
+.scroll-hint{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);color:rgba(240,244,255,.2);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+/* ── Sections ── */
+section{position:relative;z-index:1;padding:72px 1.5rem;contain:layout}
+.wrap{max-width:1080px;margin:0 auto}
+.slabel{font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.16em;margin-bottom:.45rem}
+.stitle{font-family:'Orbitron',sans-serif;font-size:clamp(1.55rem,3.5vw,2.3rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:.7rem}
+.ssub{font-size:.97rem;color:var(--gray);max-width:580px;line-height:1.7}
+.sh{margin-bottom:2.75rem}
+/* ── Glass cards — lighter blur, solid bg for speed ── */
+.glass{
+  background:rgba(10,15,45,.75);
+  border:1px solid var(--border);border-radius:14px;
+  box-shadow:0 2px 24px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.04);
+  transition:transform .22s,border-color .22s,box-shadow .22s;
+  /* Reduced blur: 8px vs previous 20px — ~3x faster paint */
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.glass:hover{transform:translateY(-3px);border-color:rgba(15,212,245,.18);box-shadow:0 6px 36px rgba(0,0,0,.45),0 0 20px rgba(15,212,245,.06)}
+/* ── About ── */
+#about{background:rgba(0,0,0,.2)}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:3.25rem;align-items:start}
+.atext p{color:var(--gray);line-height:1.8;margin-bottom:.9rem;font-size:.98rem}
+.atext p strong{color:var(--white)}
+.apills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.4rem}
+.pill{font-size:.73rem;font-weight:600;padding:.28rem .8rem;border-radius:20px;background:rgba(15,212,245,.07);border:1px solid rgba(15,212,245,.22);color:var(--teal);cursor:default;transition:background .18s}
+.pill:hover{background:rgba(15,212,245,.13)}
+.pill.p{background:rgba(168,85,247,.07);border-color:rgba(168,85,247,.22);color:var(--purple)}
+.sc{background:rgba(15,212,245,.03);border:1px solid rgba(15,212,245,.12);border-radius:11px;padding:1.15rem 1.4rem;margin-bottom:.9rem;border-left:3px solid var(--teal)}
+.scv{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--teal);line-height:1}
+.scl{font-size:.85rem;color:var(--gray);margin-top:.25rem}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+/* ── Projects ── */
+.plist{display:flex;flex-direction:column;gap:2.25rem}
+.pcard{overflow:hidden}
+.pci{padding:1.75rem}
+.phead{display:flex;gap:1.35rem;align-items:flex-start;margin-bottom:1.35rem}
+.pnum{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:900;color:#000;flex-shrink:0}
+.ptag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem}
+.pname{font-size:1.22rem;font-weight:700;color:var(--white);line-height:1.22;margin-bottom:.28rem}
+.pbrand{font-size:.85rem;color:var(--gray)}
+.pdesc{color:var(--gray);line-height:1.7;margin-bottom:1.35rem;font-size:.94rem}
+.kpis{display:flex;gap:1.35rem;flex-wrap:wrap;margin-bottom:1.35rem}
+.kv{font-family:'Orbitron',sans-serif;font-size:1.35rem;font-weight:900;line-height:1;display:block}
+.kl{font-size:.7rem;color:var(--gray);margin-top:.14rem}
+.ks{width:1px;background:rgba(255,255,255,.09);align-self:stretch}
+.cl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray);margin-bottom:.45rem}
+.chips{display:flex;flex-wrap:wrap;gap:.38rem;margin-bottom:1.15rem}
+.chip{font-size:.76rem;font-weight:600;padding:.25rem .65rem;border-radius:5px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(240,244,255,.75)}
+.fi{display:flex;gap:.55rem;margin-bottom:.4rem;font-size:.86rem;color:rgba(240,244,255,.78);line-height:1.5}
+.fd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:.44rem}
+.pfoot{border-top:1px solid rgba(255,255,255,.05);padding:1rem 1.75rem;display:flex;gap:.65rem;flex-wrap:wrap;background:rgba(0,0,0,.18)}
+.bx{font-size:.79rem;padding:.38rem .95rem;border-radius:5px;font-weight:600;transition:all .18s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;border:1px solid transparent;cursor:pointer}
+.bs{background:linear-gradient(135deg,var(--teal-dk),var(--teal));color:#000}
+.bs:hover{box-shadow:0 0 14px rgba(15,212,245,.35);text-decoration:none;color:#000}
+.bo{border-color:rgba(15,212,245,.28);color:var(--teal);background:rgba(15,212,245,.04)}
+.bo:hover{background:rgba(15,212,245,.1);text-decoration:none}
+/* ── Certs ── */
+#certifications{background:rgba(0,0,0,.18)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.95rem}
+.ccard{padding:1.15rem 1.4rem;display:flex;gap:.95rem;align-items:flex-start}
+.cicon{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.cname{font-size:.88rem;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.18rem}
+.ciss{font-size:.76rem;color:var(--teal);font-weight:600}
+.cdet{font-size:.7rem;color:var(--gray);margin-top:.18rem;line-height:1.4}
+.cbadge{display:inline-block;font-size:.62rem;font-weight:700;background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.25);padding:.1rem .45rem;border-radius:4px;margin-top:.3rem;text-transform:uppercase;letter-spacing:.05em}
+/* ── Skills ── */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.sgt{font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--teal);margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid rgba(15,212,245,.18)}
+.si{display:flex;align-items:center;gap:.55rem;padding:.4rem 0;font-size:.86rem;color:rgba(240,244,255,.72);border-bottom:1px solid rgba(255,255,255,.04);transition:color .18s}
+.si:hover{color:var(--white)}
+.sd{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+/* ── Contact ── */
+#contact{text-align:center}
+.clinks{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.35rem}
+.clink{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.04);border:1px solid rgba(15,212,245,.18);color:var(--white);font-size:.88rem;font-weight:600;padding:.6rem 1.3rem;border-radius:7px;transition:all .2s}
+.clink:hover{background:rgba(15,212,245,.07);border-color:rgba(15,212,245,.4);text-decoration:none;color:var(--teal)}
+.cnote{font-size:.78rem;color:rgba(240,244,255,.28)}
+footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1px solid rgba(15,212,245,.08);font-size:.76rem;color:rgba(240,244,255,.22)}
+/* ── Fade-in ── */
+.fi-anim{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fi-anim.vis{opacity:1;transform:translateY(0)}
+/* ── Responsive ── */
+@media(max-width:768px){
+  .agrid{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:1fr}
+  .nlinks{display:none}
+  .srow{grid-template-columns:1fr}
+}
+/* ── Reduced motion: skip animations for users who prefer it ── */
+@media(prefers-reduced-motion:reduce){
+  .hname{animation:none}
+  .scroll-hint{animation:none}
+  .fi-anim{opacity:1;transform:none;transition:none}
+  #sf{display:none}
+}
+</style>
+</head>
+<body>
+<canvas id="sf"></canvas>
+
+<nav>
+  <div class="nlogo">Luis <span>Flores</span></div>
+  <ul class="nlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="ncta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hi">
+    <div class="hbadge">UT Austin · BBA Marketing · May 2026</div>
+    <h1 class="hname">Luis Flores</h1>
+    <p class="htitle">AI-Integrated Marketing Professional</p>
+    <p class="hsum">I build AI-powered marketing systems — not just talk about them. Brand audits, content engines, and growth funnel analysis backed by real data, delivered as professional-grade deliverables. Bilingual · 5 certifications · Austin TX.</p>
+    <div class="hstats">
+      <div class="hs"><span class="hsv">3</span><span class="hsl">Projects</span></div>
+      <div class="hdiv"></div>
+      <div class="hs"><span class="hsv">5</span><span class="hsl">Certifications</span></div>
+      <div class="hdiv"></div>
+      <div class="hs"><span class="hsv">$11.5M</span><span class="hsl">Opp. Identified</span></div>
+      <div class="hdiv"></div>
+      <div class="hs"><span class="hsv">3.00</span><span class="hsl">UT Austin GPA</span></div>
+    </div>
+    <div class="hbtns">
+      <a href="#projects" class="btn btg">Explore My Work ↓</a>
+      <!-- PDF opens in browser tab — works locally AND when hosted -->
+      <a href="Luis_Flores_Marketing_Resume.pdf" class="btn bto" target="_blank" rel="noopener">Download Resume</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><span>↓</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="agrid fi-anim">
+      <div class="atext">
+        <p class="slabel">About Me</p>
+        <h2 class="stitle" style="margin-bottom:1.1rem">AI-native<br/>from day one.</h2>
+        <p>I'm a marketing senior at UT Austin graduating May 2026 with a focus on <strong>AI-augmented brand and growth strategy</strong>. While most students wrote case studies about AI, I was building the tools.</p>
+        <p>My background spans both strategic and technical: I can write a competitive positioning brief <em>and</em> build the Python script that generates the PDF. That combination is rare at the entry level.</p>
+        <p>Targeting <strong>Product Marketing, Brand/Content, and Growth Marketing</strong> roles where AI-native skills drive measurable outcomes from day one.</p>
+        <div class="apills">
+          <span class="pill">Prompt Engineering</span><span class="pill p">Brand Strategy</span>
+          <span class="pill">Content Systems</span><span class="pill p">Growth Analytics</span>
+          <span class="pill">Bilingual EN/ES</span><span class="pill p">LLM API Integration</span>
+        </div>
+      </div>
+      <div>
+        <div class="sc"><div class="scv">AI Survey Intelligence System</div><div class="scl">Built an end-to-end AI system generating diverse consumer personas that auto-complete surveys on Qualtrics, SurveyMonkey, and Typeform — replacing $5K–$50K in traditional panel research costs.</div></div>
+        <div class="srow">
+          <div class="sc" style="border-color:var(--gold)"><div class="scv" style="color:var(--gold)">3</div><div class="scl">Completed portfolio projects across brand, content, and growth</div></div>
+          <div class="sc" style="border-color:var(--purple)"><div class="scv" style="color:var(--purple)">14+</div><div class="scl">Professional deliverable files built for real brands</div></div>
+        </div>
+        <div class="sc" style="border-color:#4ade80"><div class="scv" style="color:#4ade80">$11.5M/mo</div><div class="scl">Revenue opportunity identified in LEGO's checkout funnel — backed by SimilarWeb data and DTC benchmarks.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sh fi-anim">
+      <p class="slabel">Portfolio Projects</p>
+      <h2 class="stitle">Real brands. Real data.<br/>Real deliverables.</h2>
+      <p class="ssub">Each project was built from scratch using AI-assisted research and structured analytical frameworks — not templates or mock scenarios.</p>
+    </div>
+    <div class="plist">
+
+      <!-- Project 1 -->
+      <div class="glass pcard fi-anim">
+        <div class="pci">
+          <div class="phead">
+            <div class="pnum" style="background:linear-gradient(135deg,#0b6e84,#0fd4f5);box-shadow:0 0 16px rgba(15,212,245,.35)">01</div>
+            <div><div class="ptag" style="color:var(--teal)">Brand Strategy · Competitive Intelligence</div><div class="pname">AI Brand Audit &amp; Competitive Intelligence Report</div><div class="pbrand">Red Bull · April 2025</div></div>
+          </div>
+          <p class="pdesc">A 14-page professional brand audit mapping competitive positioning, consumer personas, messaging gaps, and strategic recommendations using AI-assisted web intelligence and structured analytical frameworks.</p>
+          <div class="kpis">
+            <div><span class="kv" style="color:var(--teal)">14</span><span class="kl">Page Report</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--teal)">4</span><span class="kl">Competitors</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--teal)">3</span><span class="kl">Personas</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--teal)">9</span><span class="kl">Sections</span></div>
+          </div>
+          <div class="cl">Deliverables</div>
+          <div class="chips"><span class="chip">📄 Brand Audit PDF</span><span class="chip">🔧 Reusable skill</span></div>
+          <div class="cl">Key Findings</div>
+          <div class="fi"><div class="fd" style="background:var(--teal)"></div><span>Content over-indexes on male/Western audiences — missing 40% of market captured by Celsius &amp; Alani Nu</span></div>
+          <div class="fi"><div class="fd" style="background:var(--teal)"></div><span>Zero ingredient transparency is a Gen Z trust liability: 73% of consumers check labels before purchasing</span></div>
+          <div class="fi"><div class="fd" style="background:var(--teal)"></div><span>TikTok-native content lags despite 90.5M+ organic fan posts already generating reach</span></div>
+        </div>
+        <!-- PDF: target="_blank" opens in browser tab — works locally AND hosted -->
+        <div class="pfoot"><a href="RedBull_Brand_Audit_LuisFlores.pdf" class="bx bs" target="_blank" rel="noopener">📄 Open Brand Audit</a></div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="glass pcard fi-anim">
+        <div class="pci">
+          <div class="phead">
+            <div class="pnum" style="background:linear-gradient(135deg,#6d28d9,#a855f7);box-shadow:0 0 16px rgba(168,85,247,.35)">02</div>
+            <div><div class="ptag" style="color:var(--purple)">Content Strategy · AI Workflow Systems</div><div class="pname">AI Content Engine + 30-Day Editorial System</div><div class="pbrand">Red Bull · April 2025</div></div>
+          </div>
+          <p class="pdesc">A complete AI-augmented content production system — evolved brand voice framework, 30-day multi-platform editorial calendar, 7-template AI prompt library, and documented human-refinement workflow.</p>
+          <div class="kpis">
+            <div><span class="kv" style="color:var(--purple)">30</span><span class="kl">Days</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--purple)">3</span><span class="kl">Platforms</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--purple)">7</span><span class="kl">AI Prompts</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--purple)">5</span><span class="kl">Before/After</span></div>
+          </div>
+          <div class="cl">Deliverables</div>
+          <div class="chips"><span class="chip">📝 Brand Voice Guide</span><span class="chip">📊 30-Day Calendar</span><span class="chip">📄 Case Study PDF</span></div>
+          <div class="cl">What This Demonstrates</div>
+          <div class="fi"><div class="fd" style="background:var(--purple)"></div><span>5 evolved voice attributes, do's/don'ts table, platform-specific tone matrix, vocabulary guide</span></div>
+          <div class="fi"><div class="fd" style="background:var(--purple)"></div><span>Every calendar day has a specific hook, caption draft, CTA, and visual direction — zero placeholder text</span></div>
+          <div class="fi"><div class="fd" style="background:var(--purple)"></div><span>Documents what AI produced vs. what human judgment changed — the critical differentiator</span></div>
+        </div>
+        <div class="pfoot">
+          <a href="RedBull_ContentEngine_CaseStudy_LuisFlores.pdf" class="bx bs" style="background:linear-gradient(135deg,#6d28d9,#a855f7)" target="_blank" rel="noopener">📄 Case Study</a>
+          <a href="RedBull_BrandVoiceGuide_LuisFlores.docx" class="bx bo" style="border-color:rgba(168,85,247,.28);color:var(--purple)" download>📝 Voice Guide</a>
+          <a href="RedBull_ContentCalendar_LuisFlores.xlsx" class="bx bo" style="border-color:rgba(168,85,247,.28);color:var(--purple)" download>📊 Calendar</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="glass pcard fi-anim">
+        <div class="pci">
+          <div class="phead">
+            <div class="pnum" style="background:linear-gradient(135deg,#b45309,#f5c842);box-shadow:0 0 16px rgba(245,200,66,.35)">03</div>
+            <div><div class="ptag" style="color:var(--gold)">Growth Marketing · Funnel Analytics · CRO</div><div class="pname">Growth Funnel Audit &amp; A/B Test Roadmap</div><div class="pbrand">LEGO · April 2025</div></div>
+          </div>
+          <p class="pdesc">Full-funnel audit mapping awareness → conversion → retention, benchmarking 18 KPIs against DTC industry standards using real SimilarWeb data, NPS (59), and revenue ($10.85B) figures. Delivered 7 prioritized A/B tests.</p>
+          <div class="kpis">
+            <div><span class="kv" style="color:var(--gold)">$11.5M</span><span class="kl">Monthly Opp.</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--gold)">18</span><span class="kl">KPIs</span></div><div class="ks"></div>
+            <div><span class="kv" style="color:var(--gold)">7</span><span class="kl">A/B Tests</span></div>
+          </div>
+          <div class="cl">Deliverables</div>
+          <div class="chips"><span class="chip">📄 Funnel Audit PDF</span><span class="chip">📊 A/B Roadmap</span></div>
+          <div class="cl">Critical Findings</div>
+          <div class="fi"><div class="fd" style="background:var(--gold)"></div><span>LEGO converts 2.5–4% of visitors despite 5.28 pages/visit and 49.9% direct traffic</span></div>
+          <div class="fi"><div class="fd" style="background:var(--gold)"></div><span>AOV $25–50 below $40–60 premium DTC benchmark — cross-sell mechanics underdeveloped</span></div>
+          <div class="fi"><div class="fd" style="background:var(--gold)"></div><span>P1 test: product recommendation quiz → +10–15% CVR = $5.7–11.5M/month</span></div>
+        </div>
+        <div class="pfoot">
+          <a href="LEGO_GrowthFunnelAudit_LuisFlores.pdf" class="bx bs" style="background:linear-gradient(135deg,#b45309,#f5c842)" target="_blank" rel="noopener">📄 Funnel Audit</a>
+          <a href="LEGO_ABTestRoadmap_LuisFlores.xlsx" class="bx bo" style="border-color:rgba(245,200,66,.28);color:var(--gold)" download>📊 A/B Roadmap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sh fi-anim">
+      <p class="slabel">Credentials</p>
+      <h2 class="stitle">Certifications</h2>
+      <p class="ssub">Industry-recognized credentials in digital marketing, inbound strategy, and AI.</p>
+    </div>
+    <div class="cgrid fi-anim">
+      <div class="glass ccard"><div class="cicon">🟠</div><div><div class="cname">Digital Marketing Certified</div><div class="ciss">HubSpot Academy</div><div class="cdet">SEO · Social Media · Video · Advertising</div><span class="cbadge">Active · Oct 2026</span></div></div>
+      <div class="glass ccard"><div class="cicon">🟠</div><div><div class="cname">Inbound Marketing Certified</div><div class="ciss">HubSpot Academy</div><div class="cdet">Content · Lead Conversion · Nurturing</div><span class="cbadge">Active · Nov 2027</span></div></div>
+      <div class="glass ccard"><div class="cicon">📈</div><div><div class="cname">Digital Marketing Simternship®</div><div class="ciss">Stukent</div><div class="cdet">Paid Search · Display · A/B Testing · KPIs</div><span class="cbadge">Nov 2025</span></div></div>
+      <div class="glass ccard"><div class="cicon">💼</div><div><div class="cname">AI for Marketing</div><div class="ciss">LinkedIn Learning</div><div class="cdet">AI for Business · Digital Marketing</div><span class="cbadge">Nov 2025</span></div></div>
+      <div class="glass ccard"><div class="cicon">🤖</div><div><div class="cname">Increase Sales with ChatGPT</div><div class="ciss">LinkedIn Learning</div><div class="cdet">AI for Business · Sales Effectiveness</div><span class="cbadge">Apr 2025</span></div></div>
+      <div class="glass ccard"><div class="cicon">🟦</div><div><div class="cname">MOS Word Certification</div><div class="ciss">Microsoft Office Specialist</div><div class="cdet">Word · Document Production</div><span class="cbadge">Active</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sh fi-anim"><p class="slabel">Capabilities</p><h2 class="stitle">Skills &amp; Tools</h2></div>
+    <div class="sgrid fi-anim">
+      <div>
+        <div class="sgt">AI &amp; Technology</div>
+        <div class="si"><div class="sd"></div>Prompt Engineering (Claude, GPT-4o)</div>
+        <div class="si"><div class="sd"></div>LLM API Integration</div>
+        <div class="si"><div class="sd"></div>AI Workflow Design &amp; Automation</div>
+        <div class="si"><div class="sd"></div>SEO Strategy &amp; Keyword Research</div>
+        <div class="si"><div class="sd"></div>Paid Search, Display &amp; Shopping Ads</div>
+        <div class="si"><div class="sd"></div>A/B Testing &amp; CRO</div>
+        <div class="si"><div class="sd"></div>Python · Google Suite · MOS Word</div>
+      </div>
+      <div>
+        <div class="sgt" style="color:var(--purple);border-color:rgba(168,85,247,.18)">Marketing Strategy</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Brand Positioning &amp; Messaging</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Consumer Insights &amp; Research</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Content Strategy &amp; Production</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Inbound Marketing Methodology</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Growth Funnel Analysis &amp; CRO</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Competitive Intelligence</div>
+        <div class="si"><div class="sd" style="background:var(--purple)"></div>Go-to-Market Strategy</div>
+      </div>
+      <div>
+        <div class="sgt" style="color:var(--gold);border-color:rgba(245,200,66,.18)">Soft Skills &amp; Languages</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>Analytical &amp; Detail-Oriented</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>Team Leadership &amp; Delegation</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>Cross-functional Collaboration</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>High-Volume Client Communication</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>Real-time Problem Solving</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>English (Native)</div>
+        <div class="si"><div class="sd" style="background:var(--gold)"></div>Spanish (Advanced Conversational)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="slabel" style="text-align:center">Get In Touch</p>
+    <h2 class="stitle" style="text-align:center">Let's talk.</h2>
+    <p class="ssub" style="text-align:center;margin:0 auto 2.25rem;color:var(--gray)">Actively seeking brand, content, or growth marketing roles for Summer/Fall 2026. If you're building something interesting — reach out.</p>
+    <div class="clinks">
+      <a href="mailto:lfloresc865@gmail.com" class="clink">✉️ lfloresc865@gmail.com</a>
+      <a href="mailto:laf3288@utexas.edu" class="clink">🎓 laf3288@utexas.edu</a>
+      <a href="Luis_Flores_Marketing_Resume.pdf" class="clink" target="_blank" rel="noopener">📄 Resume</a>
+    </div>
+    <p class="cnote">Austin, TX · Available May 2026 · Open to remote &amp; hybrid · (956) 662-3710</p>
+  </div>
+</section>
+<footer><p>Luis Flores · AI-Integrated Marketing · UT Austin BBA 2026</p></footer>
+
+<script>
+/* ══ OPTIMIZED GALAXY CANVAS ═══════════════════════════════════════
+   Performance fixes:
+   - 30fps cap (every other frame)
+   - Fewer stars (1 per 2000px² vs 1100px²)
+   - Single-pass Milky Way with one gradient (no per-frame circle draws)
+   - Stars grouped by size to reduce state changes
+   - Shooting stars: max 2 at once, less frequent
+═══════════════════════════════════════════════════════════════════ */
+const cv=document.getElementById('sf');
+const cx=cv.getContext('2d',{alpha:false});
+let stars=[],shoots=[],W,H,frame=0,rafId;
+
+function resize(){
+  W=cv.width=window.innerWidth;
+  H=cv.height=window.innerHeight;
+  mkStars();
+  drawMW(); // pre-draw Milky Way to offscreen once
+}
+
+// Pre-render Milky Way to offscreen canvas — drawn once, composited cheaply
+let mwCanvas;
+function drawMW(){
+  mwCanvas=new OffscreenCanvas(W,H);
+  const mc=mwCanvas.getContext('2d');
+  mc.clearRect(0,0,W,H);
+  const g=mc.createLinearGradient(0,H*.12,W,H*.88);
+  g.addColorStop(0,'rgba(0,0,0,0)');
+  g.addColorStop(.28,'rgba(22,18,80,.14)');
+  g.addColorStop(.5,'rgba(38,14,90,.17)');
+  g.addColorStop(.72,'rgba(12,38,85,.12)');
+  g.addColorStop(1,'rgba(0,0,0,0)');
+  mc.fillStyle=g;mc.fillRect(0,0,W,H);
+  // Two soft nebula blobs
+  [[W*.25,H*.38,W*.2,'rgba(48,14,95,.07)'],[W*.65,H*.6,W*.22,'rgba(10,60,110,.07)']].forEach(([x,y,r,c])=>{
+    const ng=mc.createRadialGradient(x,y,0,x,y,r);
+    ng.addColorStop(0,c);ng.addColorStop(1,'rgba(0,0,0,0)');
+    mc.fillStyle=ng;mc.beginPath();mc.arc(x,y,r,0,Math.PI*2);mc.fill();
+  });
+}
+
+function mkStars(){
+  stars=[];
+  const n=Math.floor(W*H/2200); // ~40% fewer than before
+  for(let i=0;i<n;i++){
+    const s=Math.random();
+    stars.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:s<.72?.35:s<.9?.65:1.0,
+      base:.1+Math.random()*.55,
+      spd:.003+Math.random()*.007,
+      ph:Math.random()*Math.PI*2,
+      hue:Math.random()<.68?215:Math.random()<.5?235:40
+    });
+  }
+}
+
+function shoot(){
+  if(shoots.length>=2)return;
+  shoots.push({x:Math.random()*W*.75,y:Math.random()*H*.35,vx:3.5+Math.random()*4,vy:1.2+Math.random()*2.5,len:80+Math.random()*110,a:1,life:0});
+}
+
+function draw(){
+  // 30fps cap: only draw on even frames
+  frame++;
+  if(frame%2!==0){rafId=requestAnimationFrame(draw);return;}
+
+  // Navy bg fill (alpha:false canvas — must fill every frame)
+  cx.fillStyle='#06070f';
+  cx.fillRect(0,0,W,H);
+
+  // Composite pre-rendered Milky Way
+  if(mwCanvas)cx.drawImage(mwCanvas,0,0);
+
+  // Stars — batch by size to reduce beginPath calls
+  const t=frame*.005;
+  stars.forEach(s=>{
+    const a=s.base+(1-s.base)*.45*(1+Math.sin(t*s.spd*50+s.ph));
+    cx.beginPath();
+    cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    cx.fillStyle=`hsla(${s.hue},55%,97%,${a})`;
+    cx.fill();
+    if(s.r>.85){
+      cx.beginPath();cx.arc(s.x,s.y,s.r*2.8,0,Math.PI*2);
+      cx.fillStyle=`hsla(${s.hue},70%,90%,${a*.08})`;cx.fill();
+    }
+  });
+
+  // Shooting stars
+  shoots=shoots.filter(s=>s.a>.01);
+  shoots.forEach(s=>{
+    s.x+=s.vx;s.y+=s.vy;s.life++;s.a=Math.max(0,1-s.life/50);
+    const tx=s.x-s.vx*(s.len/10),ty=s.y-s.vy*(s.len/10);
+    const sg=cx.createLinearGradient(tx,ty,s.x,s.y);
+    sg.addColorStop(0,'rgba(15,212,245,0)');
+    sg.addColorStop(.6,`rgba(15,212,245,${s.a*.35})`);
+    sg.addColorStop(1,`rgba(255,255,255,${s.a})`);
+    cx.beginPath();cx.moveTo(tx,ty);cx.lineTo(s.x,s.y);
+    cx.strokeStyle=sg;cx.lineWidth=1.4;cx.stroke();
+  });
+
+  // Shooting star spawn: less frequent
+  if(frame%420===0&&Math.random()>.35)shoot();
+
+  rafId=requestAnimationFrame(draw);
+}
+
+// Pause canvas when tab is hidden (saves battery/CPU)
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){cancelAnimationFrame(rafId)}
+  else{rafId=requestAnimationFrame(draw)}
+});
+
+let resizeTimer;
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(resize,200); // debounce resize
+});
+
+resize();
+draw();
+setTimeout(shoot,2000);
+setTimeout(shoot,5500);
+
+/* ── Scroll fade-in ── */
+const io=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}})
+},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fi-anim').forEach(el=>io.observe(el));
+
+/* ── Active nav ── */
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.nlinks a');
+let ticking=false;
+window.addEventListener('scroll',()=>{
+  if(ticking)return;
+  ticking=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY+70;
+    secs.forEach(s=>{
+      if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+        nls.forEach(a=>{
+          a.classList.toggle('active',a.getAttribute('href')==='#'+s.id);
+        });
+      }
+    });
+    ticking=false;
+  });
+});
+</script>
+</body>
+</html>
