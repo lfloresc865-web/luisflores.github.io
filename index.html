@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.wheretheiss.at;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="referrer" content="no-referrer">
-<title>Luis Flores — Marketing Portfolio</title>
+<meta name="description" content="Luis Flores — AI-integrated marketing professional. UT Austin BBA 2026. Brand audits, content engines, and growth funnel analysis built with AI.">
+<title>Luis Flores — AI-Integrated Marketing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
 <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" media="print" onload="this.media='all'"/>
@@ -14,285 +15,304 @@
 /* ══ RESET ══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#020408;--panel:rgba(6,12,22,.8);--teal:#12e2ff;--teal-dk:#0b6e84;--teal-dim:rgba(18,226,255,.18);
-  --amber:#f5c842;--purple:#a855f7;--green:#3ddc84;--red:#ff5c5c;
-  --white:#eaf6ff;--gray:#7c8fab;--border:rgba(18,226,255,.16);
-  --glow-t:rgba(18,226,255,.4);--glow-p:rgba(168,85,247,.35);--glow-a:rgba(245,200,66,.4);
-  --f-disp:'Orbitron',sans-serif;--f-mono:'Share Tech Mono',monospace;--f-body:'Inter',system-ui,sans-serif;
+  /* Pure monochrome — space is black and white */
+  --bg:#000;
+  --white:#f5f7fa;
+  --gray:#98a0ad;
+  --gray-dk:#5c636e;
+  --panel:rgba(10,10,12,.82);
+  --border:rgba(255,255,255,.14);
+  --border-dim:rgba(255,255,255,.07);
+  --glow:rgba(255,255,255,.5);
+  --glow-soft:rgba(255,255,255,.22);
+  --f-disp:'Orbitron',sans-serif;
+  --f-mono:'Share Tech Mono',monospace;
+  --f-body:'Inter',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--f-body);background:var(--bg);color:var(--white);overflow-x:hidden;padding-bottom:34px}
-a{color:var(--teal);text-decoration:none}
-::selection{background:rgba(18,226,255,.25)}
+body{font-family:var(--f-body);background:var(--bg);color:var(--white);overflow-x:hidden}
+a{color:var(--white);text-decoration:none}
+::selection{background:rgba(255,255,255,.25)}
 #sf{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform}
-#grid-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
-  background-image:linear-gradient(rgba(18,226,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(18,226,255,.035) 1px,transparent 1px);
-  background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000 40%,transparent 90%)}
 
-/* ══ HUD PANEL — corner-bracket component ══ */
-.hud{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:3px;
-  box-shadow:0 2px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.03);
-  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+/* ══ HUD PANEL — corner brackets, monochrome ══ */
+.hud{position:relative;background:var(--panel);border:1px solid var(--border-dim);border-radius:3px;
+  box-shadow:0 2px 26px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   transition:transform .22s,border-color .22s,box-shadow .22s}
 .hud::before,.hud::after{content:'';position:absolute;width:13px;height:13px;pointer-events:none}
-.hud::before{top:-1px;left:-1px;border-top:2px solid var(--teal);border-left:2px solid var(--teal)}
-.hud::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--teal);border-right:2px solid var(--teal)}
-.hud:hover{transform:translateY(-3px);border-color:rgba(18,226,255,.32);box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 24px rgba(18,226,255,.08)}
-.corners{position:relative}
-.corners i{position:absolute;width:16px;height:16px;pointer-events:none}
-.corners i.tl{top:-1px;left:-1px;border-top:2px solid var(--teal);border-left:2px solid var(--teal)}
-.corners i.tr{top:-1px;right:-1px;border-top:2px solid var(--teal);border-right:2px solid var(--teal)}
-.corners i.bl{bottom:-1px;left:-1px;border-bottom:2px solid var(--teal);border-left:2px solid var(--teal)}
-.corners i.br{bottom:-1px;right:-1px;border-bottom:2px solid var(--teal);border-right:2px solid var(--teal)}
-.tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
-  border:1px solid rgba(18,226,255,.3);padding:.22rem .6rem;border-radius:2px;background:rgba(18,226,255,.05);display:inline-block}
-.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
-.dot-live{background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.6s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hud::before{top:-1px;left:-1px;border-top:2px solid var(--white);border-left:2px solid var(--white)}
+.hud::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--white);border-right:2px solid var(--white)}
+.hud:hover{transform:translateY(-3px);border-color:var(--border);box-shadow:0 8px 40px rgba(0,0,0,.7),0 0 24px rgba(255,255,255,.07)}
 
 /* ══ NAV ══ */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;padding:0 1.75rem;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(2,4,8,.9);border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,.9);border-bottom:1px solid var(--border-dim);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);contain:layout style}
-.nlogo{font-family:var(--f-disp);font-weight:900;font-size:.98rem;color:var(--white);text-shadow:0 0 16px var(--glow-t);letter-spacing:.02em}
-.nlogo span{color:var(--teal)}
-.nlogo small{display:block;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.16em;color:var(--gray);font-weight:400}
-.nlinks{display:flex;align-items:center;gap:1.5rem;list-style:none}
-.nlinks a{font-family:var(--f-mono);color:rgba(234,246,255,.55);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;transition:color .18s}
-.nlinks a::before{content:'['}.nlinks a::after{content:']'}
-.nlinks a::before,.nlinks a::after{color:rgba(18,226,255,0);transition:color .18s}
-.nlinks a:hover,.nlinks a.active{color:var(--teal);text-decoration:none}
-.nlinks a:hover::before,.nlinks a:hover::after,.nlinks a.active::before,.nlinks a.active::after{color:var(--teal)}
-.ncta{background:linear-gradient(135deg,var(--teal-dk),var(--teal));color:#000!important;padding:.32rem .9rem;border-radius:2px;font-weight:700}
-.ncta::before,.ncta::after{content:''!important}
-.nclock{font-family:var(--f-mono);font-size:.72rem;color:var(--gray);display:flex;align-items:center;gap:.4rem;letter-spacing:.04em}
-.nclock b{color:var(--teal);font-weight:400}
+.nlogo{font-family:var(--f-disp);font-weight:900;font-size:.98rem;color:var(--white);text-shadow:0 0 16px var(--glow);letter-spacing:.02em}
+.nlogo small{display:block;font-family:var(--f-mono);font-weight:400;font-size:.55rem;color:var(--gray-dk);letter-spacing:.22em}
+.nlinks{display:flex;gap:1.6rem;list-style:none}
+.nlinks a{color:var(--gray);font-size:.84rem;font-weight:500;transition:color .18s,text-shadow .18s}
+.nlinks a:hover,.nlinks a.active{color:var(--white);text-shadow:0 0 10px var(--glow-soft)}
+.ncta{border:1px solid var(--border);padding:.36rem 1.05rem;border-radius:3px;color:var(--white)!important;font-weight:700!important;background:rgba(255,255,255,.05)}
+.ncta:hover{background:var(--white);color:#000!important;text-shadow:none!important}
 
 /* ══ HERO ══ */
-#hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:110px 1.5rem 50px;contain:layout}
-.hi{max-width:840px;position:relative;z-index:2}
-.hbadge{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;color:var(--teal);text-transform:uppercase;
-  border:1px solid rgba(18,226,255,.3);padding:.38rem 1rem;border-radius:2px;background:rgba(18,226,255,.05);
-  margin-bottom:1.6rem;display:inline-block}
-.hname{font-family:var(--f-disp);font-size:clamp(2.5rem,7.5vw,5rem);font-weight:900;line-height:1;color:var(--white);
-  margin-bottom:.5rem;text-shadow:0 0 40px rgba(18,226,255,.5),0 0 80px rgba(18,226,255,.15);animation:gp 4s ease-in-out infinite}
-@keyframes gp{0%,100%{text-shadow:0 0 30px rgba(18,226,255,.5),0 0 70px rgba(18,226,255,.12)}50%{text-shadow:0 0 50px rgba(18,226,255,.8),0 0 100px rgba(168,85,247,.16)}}
-.htitle{font-family:var(--f-mono);font-size:clamp(.85rem,2.2vw,1.05rem);color:var(--teal);font-weight:400;margin-bottom:1.2rem;letter-spacing:.06em}
-.hsum{font-size:1rem;color:rgba(234,246,255,.62);max-width:580px;margin:0 auto 2.4rem;line-height:1.75}
-.hstats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.4rem}
-.hs{padding:.75rem 1.4rem;min-width:132px;text-align:center}
-.hsv{font-family:var(--f-mono);font-size:1.6rem;font-weight:400;color:var(--white);display:block;line-height:1}
-.hsl{font-family:var(--f-mono);font-size:.62rem;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;display:flex;align-items:center;justify-content:center;gap:.3rem}
+#hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:96px 1.5rem 56px;contain:layout}
+.hi{max-width:860px}
+.hbadge{display:inline-block;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;color:var(--gray);
+  text-transform:uppercase;border:1px solid var(--border-dim);padding:.36rem 1rem;border-radius:2px;
+  background:rgba(255,255,255,.03);margin-bottom:1.5rem}
+.hname{font-family:var(--f-disp);font-size:clamp(2.6rem,8vw,5.2rem);font-weight:900;line-height:1;
+  color:var(--white);margin-bottom:.55rem;
+  text-shadow:0 0 40px rgba(255,255,255,.55),0 0 90px rgba(255,255,255,.16);
+  animation:gp 4s ease-in-out infinite}
+@keyframes gp{
+  0%,100%{text-shadow:0 0 32px rgba(255,255,255,.5),0 0 80px rgba(255,255,255,.13)}
+  50%{text-shadow:0 0 52px rgba(255,255,255,.8),0 0 110px rgba(255,255,255,.22)}
+}
+.htitle{font-family:var(--f-mono);font-size:clamp(.85rem,2.4vw,1.15rem);color:var(--gray);letter-spacing:.22em;margin-bottom:1.3rem;text-transform:uppercase}
+.hsum{font-size:1.03rem;color:var(--gray);max-width:600px;margin:0 auto 2rem;line-height:1.75}
+.hsum strong{color:var(--white)}
+/* Impact stats — the recruiter hook, visible without scrolling */
+.hstats{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.1rem}
+.hs{padding:.85rem 1.5rem;text-align:center;min-width:132px}
+.hsv{font-family:var(--f-disp);font-size:1.55rem;font-weight:900;color:var(--white);display:block;text-shadow:0 0 18px var(--glow)}
+.hsl{font-family:var(--f-mono);font-size:.62rem;color:var(--gray-dk);text-transform:uppercase;letter-spacing:.12em;margin-top:.3rem;display:block}
 .hbtns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.6rem;border-radius:2px;font-family:var(--f-mono);
-  font-weight:400;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;text-decoration:none;border:1px solid transparent;cursor:pointer}
-.btg{background:linear-gradient(135deg,var(--teal-dk),var(--teal));color:#000;box-shadow:0 0 20px rgba(18,226,255,.3)}
-.btg:hover{box-shadow:0 0 36px rgba(18,226,255,.6);transform:translateY(-2px);text-decoration:none;color:#000}
-.bto{border-color:rgba(18,226,255,.35);color:var(--teal);background:rgba(18,226,255,.04)}
-.bto:hover{background:rgba(18,226,255,.1);transform:translateY(-2px);text-decoration:none}
-.scroll-hint{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);color:rgba(234,246,255,.22);
-  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:bob 2.5s ease-in-out infinite}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.7rem;border-radius:3px;font-weight:600;font-size:.93rem;transition:all .2s;cursor:pointer}
+.btg{background:var(--white);color:#000;box-shadow:0 0 22px rgba(255,255,255,.3)}
+.btg:hover{box-shadow:0 0 40px rgba(255,255,255,.55);transform:translateY(-2px);color:#000}
+.bto{border:1px solid var(--border);color:var(--white);background:rgba(255,255,255,.04)}
+.bto:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);color:var(--gray-dk);
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:.35rem;animation:bob 2.5s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
 
 /* ══ SECTIONS ══ */
-section{position:relative;z-index:1;padding:64px 1.5rem;contain:layout}
+section{position:relative;z-index:1;padding:70px 1.5rem;contain:layout}
 .wrap{max-width:1080px;margin:0 auto}
-.slabel{font-family:var(--f-mono);font-size:.68rem;font-weight:400;color:var(--teal);text-transform:uppercase;letter-spacing:.18em;margin-bottom:.5rem}
-.stitle{font-family:var(--f-disp);font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:.7rem}
-.ssub{font-size:.94rem;color:var(--gray);max-width:600px;line-height:1.7}
+.slabel{font-family:var(--f-mono);font-size:.66rem;color:var(--gray-dk);text-transform:uppercase;letter-spacing:.2em;margin-bottom:.45rem}
+.stitle{font-family:var(--f-disp);font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:.7rem;text-shadow:0 0 24px var(--glow-soft)}
+.ssub{font-size:.96rem;color:var(--gray);max-width:600px;line-height:1.7}
 .sh{margin-bottom:2.6rem}
-
-/* ══ TELEMETRY (ISS TRACKER) ══ */
-#tracking{background:rgba(0,0,0,.22)}
-.tele{display:grid;grid-template-columns:230px 1fr;gap:1.75rem;padding:1.5rem}
-.radar-box{position:relative}
-.radar-tag{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
-.radar-tag span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;color:var(--gray);text-transform:uppercase}
-.radar-tag .live{display:flex;align-items:center;gap:.35rem;font-family:var(--f-mono);font-size:.6rem;color:var(--green);text-transform:uppercase;letter-spacing:.08em}
-#issRadar{width:100%;height:auto;border:1px solid rgba(18,226,255,.15);border-radius:3px;background:rgba(0,4,10,.5)}
-.radar-note{font-family:var(--f-mono);font-size:.58rem;color:rgba(124,143,171,.7);text-align:center;margin-top:.5rem;letter-spacing:.04em}
-.tele-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-content:start}
-.tstat{border-left:2px solid rgba(18,226,255,.3);padding:.2rem 0 .2rem .8rem}
-.tstat-lbl{font-family:var(--f-mono);font-size:.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem}
-.tstat-val{font-family:var(--f-mono);font-size:1.3rem;color:var(--teal);line-height:1;text-shadow:0 0 14px var(--glow-t)}
-.tstat-val small{font-size:.68rem;color:var(--gray);margin-left:.25rem;text-shadow:none}
-.tele-foot{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-top:.4rem;
-  font-family:var(--f-mono);font-size:.62rem;color:rgba(124,143,171,.75);border-top:1px solid rgba(255,255,255,.06);padding-top:.75rem}
-.tele-foot a{color:var(--teal)}
-@media(max-width:768px){.tele{grid-template-columns:1fr}.tele-grid{grid-template-columns:repeat(2,1fr)}}
-
-/* ══ ABOUT ══ */
-#about{background:rgba(0,0,0,.2)}
-.agrid{display:grid;grid-template-columns:1fr 1fr;gap:3.25rem;align-items:start}
-.atext p{color:var(--gray);line-height:1.8;margin-bottom:.9rem;font-size:.98rem}
-.atext p strong{color:var(--white)}
-.apills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.4rem}
-.pill{font-family:var(--f-mono);font-size:.68rem;padding:.3rem .75rem;border-radius:2px;background:rgba(18,226,255,.06);
-  border:1px solid rgba(18,226,255,.24);color:var(--teal);cursor:default;text-transform:uppercase;letter-spacing:.03em}
-.pill.p{background:rgba(168,85,247,.06);border-color:rgba(168,85,247,.24);color:var(--purple)}
-.sc{padding:1.1rem 1.3rem;margin-bottom:.85rem;border-left:2px solid var(--teal)}
-.scv{font-family:var(--f-mono);font-size:1.5rem;color:var(--teal);line-height:1.2;text-shadow:0 0 16px var(--glow-t)}
-.scl{font-size:.83rem;color:var(--gray);margin-top:.3rem;line-height:1.55}
-.srow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
 
 /* ══ PROJECTS ══ */
 .plist{display:flex;flex-direction:column;gap:2.1rem}
+.pcard{overflow:hidden}
 .pci{padding:1.7rem}
-.phead{display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1.3rem}
-.pnum{width:44px;height:44px;border-radius:3px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--f-mono);font-size:1rem;color:#000;flex-shrink:0;border:1px solid rgba(255,255,255,.2)}
-.ptag{font-family:var(--f-mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
-.pname{font-size:1.16rem;font-weight:700;color:var(--white);line-height:1.22;margin-bottom:.28rem}
-.pbrand{font-family:var(--f-mono);font-size:.76rem;color:var(--gray)}
-.pdesc{color:var(--gray);line-height:1.7;margin-bottom:1.3rem;font-size:.92rem}
+.phead{display:flex;gap:1.3rem;align-items:flex-start;margin-bottom:1.3rem}
+.pnum{width:48px;height:48px;border-radius:3px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-disp);font-size:1rem;font-weight:900;color:#000;background:var(--white);
+  box-shadow:0 0 18px rgba(255,255,255,.35);flex-shrink:0}
+.ptag{font-family:var(--f-mono);font-size:.64rem;color:var(--gray);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.32rem}
+.pname{font-size:1.22rem;font-weight:700;color:var(--white);line-height:1.25;margin-bottom:.26rem}
+.pbrand{font-family:var(--f-mono);font-size:.76rem;color:var(--gray-dk)}
+.pdesc{color:var(--gray);line-height:1.7;margin-bottom:1.3rem;font-size:.94rem}
 .kpis{display:flex;gap:1.3rem;flex-wrap:wrap;margin-bottom:1.3rem}
-.kv{font-family:var(--f-mono);font-size:1.25rem;line-height:1;display:block}
-.kl{font-family:var(--f-mono);font-size:.62rem;color:var(--gray);margin-top:.2rem;text-transform:uppercase;letter-spacing:.04em}
-.ks{width:1px;background:rgba(255,255,255,.08);align-self:stretch}
-.cl{font-family:var(--f-mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:.5rem}
-.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
-.chip{font-family:var(--f-mono);font-size:.7rem;padding:.28rem .6rem;border-radius:2px;background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.12);color:rgba(234,246,255,.75);text-transform:uppercase;letter-spacing:.03em}
-.fi{display:flex;gap:.55rem;margin-bottom:.42rem;font-size:.84rem;color:rgba(234,246,255,.78);line-height:1.55}
-.fd{width:5px;height:5px;flex-shrink:0;margin-top:.5rem}
-.pfoot{border-top:1px solid rgba(255,255,255,.06);padding:.95rem 1.7rem;display:flex;gap:.6rem;flex-wrap:wrap;background:rgba(0,0,0,.2)}
-.bx{font-family:var(--f-mono);font-size:.72rem;padding:.4rem .95rem;border-radius:2px;font-weight:400;transition:all .18s;
-  text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;border:1px solid transparent;cursor:pointer;text-transform:uppercase;letter-spacing:.03em}
-.bs{background:linear-gradient(135deg,var(--teal-dk),var(--teal));color:#000}
-.bs:hover{box-shadow:0 0 14px rgba(18,226,255,.4);text-decoration:none;color:#000}
-.bo{border-color:rgba(18,226,255,.28);color:var(--teal);background:rgba(18,226,255,.04)}
-.bo:hover{background:rgba(18,226,255,.1);text-decoration:none}
+.kv{font-family:var(--f-disp);font-size:1.35rem;font-weight:900;color:var(--white);line-height:1;display:block;text-shadow:0 0 14px var(--glow-soft)}
+.kl{font-family:var(--f-mono);font-size:.62rem;color:var(--gray-dk);margin-top:.2rem;text-transform:uppercase;letter-spacing:.08em}
+.ks{width:1px;background:var(--border-dim);align-self:stretch}
+.cl{font-family:var(--f-mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gray-dk);margin-bottom:.45rem}
+.chips{display:flex;flex-wrap:wrap;gap:.38rem;margin-bottom:1.1rem}
+.chip{font-size:.76rem;font-weight:600;padding:.25rem .65rem;border-radius:2px;background:rgba(255,255,255,.05);border:1px solid var(--border-dim);color:var(--gray)}
+.fi{display:flex;gap:.55rem;margin-bottom:.4rem;font-size:.86rem;color:var(--gray);line-height:1.55}
+.fi span strong{color:var(--white)}
+.fd{width:5px;height:5px;border-radius:50%;background:var(--white);box-shadow:0 0 6px var(--glow-soft);flex-shrink:0;margin-top:.46rem}
+.pfoot{border-top:1px solid var(--border-dim);padding:1rem 1.7rem;display:flex;gap:.6rem;flex-wrap:wrap;background:rgba(255,255,255,.02)}
+.bx{font-size:.79rem;padding:.4rem 1rem;border-radius:2px;font-weight:600;transition:all .18s;display:inline-flex;align-items:center;gap:.35rem;cursor:pointer}
+.bs{background:var(--white);color:#000}
+.bs:hover{box-shadow:0 0 16px rgba(255,255,255,.4);color:#000}
+.bo{border:1px solid var(--border);color:var(--white);background:rgba(255,255,255,.03)}
+.bo:hover{background:rgba(255,255,255,.1)}
 
-/* ══ CERTIFICATIONS ══ */
-#certifications{background:rgba(0,0,0,.18)}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.9rem}
-.ccard{padding:1.1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start}
-.cbadgeid{width:38px;height:38px;border-radius:2px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--f-mono);font-size:.78rem;font-weight:700;flex-shrink:0;background:rgba(18,226,255,.05);
-  border:1px solid rgba(18,226,255,.25);color:var(--teal);letter-spacing:0}
-.cname{font-size:.86rem;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.18rem}
-.ciss{font-family:var(--f-mono);font-size:.7rem;color:var(--teal)}
-.cdet{font-size:.7rem;color:var(--gray);margin-top:.2rem;line-height:1.4}
-.cstat{display:flex;align-items:center;gap:.35rem;margin-top:.4rem;font-family:var(--f-mono);font-size:.6rem;
-  color:var(--green);text-transform:uppercase;letter-spacing:.06em}
+/* ══ ABOUT ══ */
+#about{background:rgba(255,255,255,.015)}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.atext p{color:var(--gray);line-height:1.8;margin-bottom:.9rem;font-size:.97rem}
+.atext p strong{color:var(--white)}
+.apills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.35rem}
+.pill{font-family:var(--f-mono);font-size:.68rem;padding:.28rem .8rem;border-radius:2px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border-dim);color:var(--gray);cursor:default;transition:all .18s;text-transform:uppercase;letter-spacing:.06em}
+.pill:hover{border-color:var(--border);color:var(--white)}
+.sc{padding:1.15rem 1.4rem;margin-bottom:.9rem;border-left:2px solid var(--white)}
+.scv{font-family:var(--f-disp);font-size:1.15rem;font-weight:900;color:var(--white);line-height:1.3;text-shadow:0 0 14px var(--glow-soft)}
+.scv.big{font-size:1.7rem}
+.scl{font-size:.85rem;color:var(--gray);margin-top:.3rem;line-height:1.55}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+
+/* ══ CERTS ══ */
+#certifications{background:rgba(255,255,255,.015)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.95rem}
+.ccard{padding:1.15rem 1.35rem;display:flex;gap:.95rem;align-items:flex-start}
+.cbadgeid{font-family:var(--f-disp);font-weight:900;font-size:.8rem;width:42px;height:42px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--white);
+  background:rgba(255,255,255,.05);border:1px solid var(--border-dim);text-shadow:0 0 8px var(--glow-soft)}
+.cname{font-size:.88rem;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.18rem}
+.ciss{font-family:var(--f-mono);font-size:.7rem;color:var(--gray)}
+.cdet{font-size:.72rem;color:var(--gray-dk);margin-top:.2rem;line-height:1.4}
+.cstat{font-family:var(--f-mono);font-size:.62rem;color:var(--gray);margin-top:.35rem;display:flex;align-items:center;gap:.4rem;text-transform:uppercase;letter-spacing:.06em}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0;background:var(--white);box-shadow:0 0 8px var(--glow)}
+.dot-live{animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
 /* ══ SKILLS ══ */
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
-.spanel{padding:1.3rem 1.4rem}
-.sgt{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--teal);
-  margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid rgba(18,226,255,.18)}
-.si{display:flex;align-items:center;gap:.55rem;padding:.38rem 0;font-size:.84rem;color:rgba(234,246,255,.72);
-  border-bottom:1px solid rgba(255,255,255,.04);font-family:var(--f-body)}
-.si b{font-family:var(--f-mono);color:var(--teal);font-weight:400}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.7rem}
+.sgt{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--white);
+  margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border);text-shadow:0 0 10px var(--glow-soft)}
+.si{display:flex;align-items:center;gap:.55rem;padding:.4rem 0;font-size:.86rem;color:var(--gray);border-bottom:1px solid rgba(255,255,255,.045);transition:color .18s}
+.si:hover{color:var(--white)}
+.si b{color:var(--gray-dk);font-weight:400}
 
 /* ══ CONTACT ══ */
 #contact{text-align:center}
-.clinks{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.3rem}
-.clink{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.03);border:1px solid rgba(18,226,255,.2);
-  color:var(--white);font-family:var(--f-mono);font-size:.8rem;padding:.6rem 1.25rem;border-radius:2px;transition:all .2s;text-transform:uppercase;letter-spacing:.02em}
-.clink:hover{background:rgba(18,226,255,.07);border-color:rgba(18,226,255,.45);text-decoration:none;color:var(--teal)}
-.cnote{font-family:var(--f-mono);font-size:.72rem;color:rgba(234,246,255,.32);letter-spacing:.03em}
-footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1px solid rgba(18,226,255,.08);
-  font-family:var(--f-mono);font-size:.68rem;color:rgba(234,246,255,.22);letter-spacing:.03em}
+.clinks{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.3rem}
+.clink{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.04);border:1px solid var(--border-dim);
+  color:var(--white);font-size:.88rem;font-weight:600;padding:.6rem 1.3rem;border-radius:3px;transition:all .2s}
+.clink:hover{background:rgba(255,255,255,.09);border-color:var(--border);text-shadow:0 0 10px var(--glow-soft)}
+.cnote{font-family:var(--f-mono);font-size:.7rem;color:var(--gray-dk);letter-spacing:.06em}
+footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1px solid var(--border-dim);
+  font-family:var(--f-mono);font-size:.66rem;color:var(--gray-dk);letter-spacing:.08em}
 
-/* ══ BOTTOM SCROLL GAUGE (dual fuel-tank style) ══ */
-#gauge-bar{position:fixed;left:0;right:0;bottom:0;z-index:99;height:34px;
-  background:rgba(2,4,8,.92);border-top:1px solid var(--border);display:flex;align-items:center;
-  padding:0 1rem;gap:1rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.gauge{flex:1;display:flex;align-items:center;gap:.5rem}
-.gauge-lbl{font-family:var(--f-mono);font-size:.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;width:70px;flex-shrink:0}
-.gauge-track{flex:1;height:8px;background:rgba(255,255,255,.05);border:1px solid rgba(18,226,255,.2);border-radius:1px;position:relative;overflow:hidden}
-.gauge-track::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 1px,transparent 1px 10%);pointer-events:none}
-.gauge-fill{height:100%;background:linear-gradient(90deg,var(--teal-dk),var(--teal));box-shadow:0 0 8px rgba(18,226,255,.5);width:0%;transition:width .1s linear}
-.gauge-pct{font-family:var(--f-mono);font-size:.75rem;color:var(--teal);width:42px;text-align:right;flex-shrink:0}
-@media(max-width:640px){#gauge-bar{gap:.5rem;padding:0 .6rem}.gauge-lbl{display:none}}
-
-/* ══ FADE-IN ══ */
+/* ══ Fade-in ══ */
 .fi-anim{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .fi-anim.vis{opacity:1;transform:translateY(0)}
 
-/* ══ RESPONSIVE ══ */
+/* ══ Responsive ══ */
 @media(max-width:768px){
   .agrid{grid-template-columns:1fr}
   .sgrid{grid-template-columns:1fr}
   .nlinks{display:none}
   .srow{grid-template-columns:1fr}
-  .hstats{gap:.5rem}
-  .hs{min-width:104px;padding:.6rem .8rem}
+  .hs{min-width:110px;padding:.7rem 1rem}
 }
+/* ══ Reduced motion ══ */
 @media(prefers-reduced-motion:reduce){
-  .hname{animation:none}
-  .scroll-hint{animation:none}
+  .hname,.scroll-hint,.dot-live{animation:none}
   .fi-anim{opacity:1;transform:none;transition:none}
-  .dot-live{animation:none}
   #sf{display:none}
 }
 </style>
 </head>
 <body>
 <canvas id="sf"></canvas>
-<div id="grid-overlay"></div>
 
 <nav>
-  <div class="nlogo">Luis <span>Flores</span><small>MARKETING · AI SYSTEMS</small></div>
+  <div class="nlogo">Luis Flores<small>MARKETING · AI SYSTEMS</small></div>
   <ul class="nlinks">
-    <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#tracking">Telemetry</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact" class="ncta">Contact</a></li>
   </ul>
-  <div class="nclock"><span class="dot dot-live"></span>T+<b id="metClock">00:00:00</b></div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — everything a recruiter needs in the first screen -->
 <section id="hero">
   <div class="hi">
-    <div class="hbadge">[ UT AUSTIN · BBA MARKETING · MAY 2026 ]</div>
+    <div class="hbadge">[ UT AUSTIN · BBA MARKETING · MAY 2026 · OPEN TO ROLES ]</div>
     <h1 class="hname">Luis Flores</h1>
-    <p class="htitle">AI-INTEGRATED MARKETING PROFESSIONAL</p>
-    <p class="hsum">I build AI-powered marketing systems — not just talk about them. Brand audits, content engines, and growth funnel analysis backed by real data, delivered as professional-grade deliverables. Bilingual · 6 certifications · Austin, TX.</p>
+    <p class="htitle">AI-Integrated Marketing</p>
+    <p class="hsum">I build AI-powered marketing systems — not just talk about them. <strong>I identified an $11.5M/month revenue opportunity in LEGO's checkout funnel</strong>, built a 30-day AI content engine for Red Bull, and delivered a 14-page competitive brand audit — all with real data and professional-grade deliverables.</p>
     <div class="hstats">
-      <div class="hs hud"><span class="hsv">03</span><span class="hsl">Projects</span></div>
+      <div class="hs hud"><span class="hsv">$11.5M</span><span class="hsl">Monthly Opp. Found</span></div>
+      <div class="hs hud"><span class="hsv">03</span><span class="hsl">Real-Brand Projects</span></div>
       <div class="hs hud"><span class="hsv">06</span><span class="hsl">Certifications</span></div>
-      <div class="hs hud"><span class="hsv">OPEN</span><span class="hsl"><span class="dot dot-live"></span>Status: Seeking Roles</span></div>
+      <div class="hs hud"><span class="hsv">EN/ES</span><span class="hsl">Bilingual</span></div>
     </div>
     <div class="hbtns">
-      <a href="#projects" class="btn btg">Explore My Work ↓</a>
-      <a href="Luis_Flores_Marketing_Resume.pdf" class="btn bto" target="_blank" rel="noopener">Download Resume</a>
+      <a href="#projects" class="btn btg">See the Work ↓</a>
+      <a href="Luis_Flores_Marketing_Resume.pdf" class="btn bto" target="_blank" rel="noopener">Resume (PDF)</a>
     </div>
   </div>
   <div class="scroll-hint"><span>Scroll</span><span>↓</span></div>
 </section>
 
-<!-- LIVE TELEMETRY / ISS TRACKER -->
-<section id="tracking">
+<!-- PROJECTS — first section after hero; strongest result leads -->
+<section id="projects">
   <div class="wrap">
     <div class="sh fi-anim">
-      <p class="slabel">Live Telemetry</p>
-      <h2 class="stitle">Real-Time Orbital Tracking</h2>
-      <p class="ssub">A space-themed HUD needs an actual spacecraft to track. Position data streamed client-side from the public Where The ISS At API — no backend, just a live fetch loop.</p>
+      <p class="slabel">// Portfolio Projects</p>
+      <h2 class="stitle">Real brands. Real data.<br/>Real deliverables.</h2>
+      <p class="ssub">Each project was built from scratch using AI-assisted research and structured analytical frameworks — not templates or mock scenarios. Every deliverable is downloadable below.</p>
     </div>
-    <div class="hud tele fi-anim">
-      <div class="radar-box">
-        <div class="radar-tag"><span>ISS · ZARYA</span><span class="live"><span class="dot dot-live" id="radarDot"></span><span id="radarStatus">ACQUIRING</span></span></div>
-        <canvas id="issRadar" width="220" height="220"></canvas>
-        <div class="radar-note">Polar projection · illustrative, not to scale</div>
+    <div class="plist">
+
+      <!-- Project 1: LEGO — leads with the $11.5M number -->
+      <div class="hud pcard fi-anim">
+        <div class="pci">
+          <div class="phead">
+            <div class="pnum">01</div>
+            <div><div class="ptag">Growth Marketing · Funnel Analytics · CRO</div><div class="pname">Growth Funnel Audit &amp; A/B Test Roadmap</div><div class="pbrand">LEGO · APRIL 2025</div></div>
+          </div>
+          <p class="pdesc">Full-funnel audit mapping awareness → conversion → retention, benchmarking 18 KPIs against DTC industry standards using real SimilarWeb data, NPS (59), and revenue ($10.85B) figures. Delivered 7 prioritized A/B tests.</p>
+          <div class="kpis">
+            <div><span class="kv">$11.5M</span><span class="kl">Monthly Opp.</span></div><div class="ks"></div>
+            <div><span class="kv">18</span><span class="kl">KPIs Benchmarked</span></div><div class="ks"></div>
+            <div><span class="kv">7</span><span class="kl">A/B Tests</span></div>
+          </div>
+          <div class="cl">Critical Findings</div>
+          <div class="fi"><div class="fd"></div><span><strong>P1 test: product recommendation quiz → +10–15% CVR = $5.7–11.5M/month</strong></span></div>
+          <div class="fi"><div class="fd"></div><span>LEGO converts 2.5–4% of visitors despite 5.28 pages/visit and 49.9% direct traffic</span></div>
+          <div class="fi"><div class="fd"></div><span>AOV $25–50 below $40–60 premium DTC benchmark — cross-sell mechanics underdeveloped</span></div>
+        </div>
+        <div class="pfoot">
+          <a href="LEGO_GrowthFunnelAudit_LuisFlores.pdf" class="bx bs" target="_blank" rel="noopener">Funnel Audit PDF</a>
+          <a href="LEGO_ABTestRoadmap_LuisFlores.xlsx" class="bx bo" download>A/B Roadmap XLSX</a>
+        </div>
       </div>
-      <div class="tele-grid">
-        <div class="tstat"><div class="tstat-lbl">Altitude</div><div class="tstat-val" id="tAlt">—<small>KM</small></div></div>
-        <div class="tstat"><div class="tstat-lbl">Velocity</div><div class="tstat-val" id="tVel">—<small>KM/H</small></div></div>
-        <div class="tstat"><div class="tstat-lbl">Visibility</div><div class="tstat-val" id="tVis">—</div></div>
-        <div class="tstat"><div class="tstat-lbl">Latitude</div><div class="tstat-val" id="tLat">—<small>°</small></div></div>
-        <div class="tstat"><div class="tstat-lbl">Longitude</div><div class="tstat-val" id="tLon">—<small>°</small></div></div>
-        <div class="tstat"><div class="tstat-lbl">Range to Austin, TX</div><div class="tstat-val" id="tRange">—<small>KM</small></div></div>
-        <div class="tele-foot">
-          <span id="teleUpdated">Awaiting first fix…</span>
-          <span>Source: <a href="https://wheretheiss.at" target="_blank" rel="noopener">wheretheiss.at</a> · Refresh 8s</span>
+
+      <!-- Project 2: Red Bull Brand Audit -->
+      <div class="hud pcard fi-anim">
+        <div class="pci">
+          <div class="phead">
+            <div class="pnum">02</div>
+            <div><div class="ptag">Brand Strategy · Competitive Intelligence</div><div class="pname">AI Brand Audit &amp; Competitive Intelligence Report</div><div class="pbrand">RED BULL · APRIL 2026</div></div>
+          </div>
+          <p class="pdesc">A 14-page professional brand audit mapping competitive positioning, consumer personas, messaging gaps, and strategic recommendations using AI-assisted web intelligence and structured analytical frameworks.</p>
+          <div class="kpis">
+            <div><span class="kv">14</span><span class="kl">Page Report</span></div><div class="ks"></div>
+            <div><span class="kv">4</span><span class="kl">Competitors</span></div><div class="ks"></div>
+            <div><span class="kv">3</span><span class="kl">Personas</span></div><div class="ks"></div>
+            <div><span class="kv">9</span><span class="kl">Sections</span></div>
+          </div>
+          <div class="cl">Key Findings</div>
+          <div class="fi"><div class="fd"></div><span>Content over-indexes on male/Western audiences — <strong>missing 40% of market</strong> captured by Celsius &amp; Alani Nu</span></div>
+          <div class="fi"><div class="fd"></div><span>Zero ingredient transparency is a Gen Z trust liability: 73% of consumers check labels before purchasing</span></div>
+          <div class="fi"><div class="fd"></div><span>TikTok-native content lags despite 90.5M+ organic fan posts already generating reach</span></div>
+        </div>
+        <div class="pfoot">
+          <a href="RedBull_Brand_Audit_LuisFlores.pdf" class="bx bs" target="_blank" rel="noopener">Brand Audit PDF</a>
+        </div>
+      </div>
+
+      <!-- Project 3: Red Bull Content Engine -->
+      <div class="hud pcard fi-anim">
+        <div class="pci">
+          <div class="phead">
+            <div class="pnum">03</div>
+            <div><div class="ptag">Content Strategy · AI Workflow Systems</div><div class="pname">AI Content Engine + 30-Day Editorial System</div><div class="pbrand">RED BULL · APRIL 2025</div></div>
+          </div>
+          <p class="pdesc">A complete AI-augmented content production system — evolved brand voice framework, 30-day multi-platform editorial calendar, 7-template AI prompt library, and documented human-refinement workflow.</p>
+          <div class="kpis">
+            <div><span class="kv">30</span><span class="kl">Days Planned</span></div><div class="ks"></div>
+            <div><span class="kv">3</span><span class="kl">Platforms</span></div><div class="ks"></div>
+            <div><span class="kv">7</span><span class="kl">AI Prompts</span></div><div class="ks"></div>
+            <div><span class="kv">5</span><span class="kl">Before/After</span></div>
+          </div>
+          <div class="cl">What This Demonstrates</div>
+          <div class="fi"><div class="fd"></div><span>Every calendar day has a specific hook, caption draft, CTA, and visual direction — <strong>zero placeholder text</strong></span></div>
+          <div class="fi"><div class="fd"></div><span>5 evolved voice attributes, do's/don'ts table, platform-specific tone matrix, vocabulary guide</span></div>
+          <div class="fi"><div class="fd"></div><span>Documents what AI produced vs. what human judgment changed — the critical differentiator</span></div>
+        </div>
+        <div class="pfoot">
+          <a href="RedBull_ContentEngine_CaseStudy_LuisFlores.pdf" class="bx bs" target="_blank" rel="noopener">Case Study PDF</a>
+          <a href="RedBull_BrandVoiceGuide_LuisFlores.docx" class="bx bo" download>Voice Guide DOCX</a>
+          <a href="RedBull_ContentCalendar_LuisFlores.xlsx" class="bx bo" download>Calendar XLSX</a>
         </div>
       </div>
     </div>
@@ -304,114 +324,25 @@ footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1
   <div class="wrap">
     <div class="agrid fi-anim">
       <div class="atext">
-        <p class="slabel">About Me</p>
+        <p class="slabel">// About Me</p>
         <h2 class="stitle" style="margin-bottom:1.1rem">AI-native<br/>from day one.</h2>
         <p>I'm a marketing senior at UT Austin graduating May 2026 with a focus on <strong>AI-augmented brand and growth strategy</strong>. While most students wrote case studies about AI, I was building the tools.</p>
         <p>My background spans both strategic and technical: I can write a competitive positioning brief <em>and</em> build the Python script that generates the PDF. That combination is rare at the entry level.</p>
         <p>Targeting <strong>Product Marketing, Brand/Content, and Growth Marketing</strong> roles where AI-native skills drive measurable outcomes from day one.</p>
         <div class="apills">
-          <span class="pill">Prompt Engineering</span><span class="pill p">Brand Strategy</span>
-          <span class="pill">Content Systems</span><span class="pill p">Growth Analytics</span>
-          <span class="pill">Bilingual EN/ES</span><span class="pill p">LLM API Integration</span>
+          <span class="pill">Prompt Engineering</span><span class="pill">Brand Strategy</span>
+          <span class="pill">Content Systems</span><span class="pill">Growth Analytics</span>
+          <span class="pill">Bilingual EN/ES</span><span class="pill">LLM API Integration</span>
         </div>
       </div>
       <div>
         <div class="sc hud"><div class="scv">AI Survey Intelligence System</div><div class="scl">Built an end-to-end AI system generating diverse consumer personas that auto-complete surveys on Qualtrics, SurveyMonkey, and Typeform — replacing traditional consumer panel research.</div></div>
         <div class="srow">
-          <div class="sc hud" style="border-color:var(--amber)"><div class="scv" style="color:var(--amber);text-shadow:0 0 16px var(--glow-a)">03</div><div class="scl">Completed portfolio projects across brand, content, and growth</div></div>
-          <div class="sc hud" style="border-color:var(--purple)"><div class="scv" style="color:var(--purple);text-shadow:0 0 16px var(--glow-p)">14+</div><div class="scl">Professional deliverable files built for real brands</div></div>
+          <div class="sc hud"><div class="scv big">3</div><div class="scl">Completed portfolio projects across brand, content, and growth</div></div>
+          <div class="sc hud"><div class="scv big">14+</div><div class="scl">Professional deliverable files built for real brands</div></div>
         </div>
-        <div class="sc hud" style="border-color:var(--green)"><div class="scv" style="color:var(--green);text-shadow:0 0 16px rgba(61,220,132,.4)">07</div><div class="scl">Prioritized A/B tests documented with hypotheses &amp; projected lift ranges for LEGO's checkout funnel</div></div>
+        <div class="sc hud"><div class="scv big">$11.5M/mo</div><div class="scl">Revenue opportunity identified in LEGO's checkout funnel — backed by SimilarWeb data and DTC benchmarks.</div></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="wrap">
-    <div class="sh fi-anim">
-      <p class="slabel">Portfolio Projects</p>
-      <h2 class="stitle">Real brands. Real data.<br/>Real deliverables.</h2>
-      <p class="ssub">Each project was built from scratch using AI-assisted research and structured analytical frameworks — not templates or mock scenarios.</p>
-    </div>
-    <div class="plist">
-
-      <div class="hud pcard fi-anim">
-        <div class="pci">
-          <div class="phead">
-            <div class="pnum" style="background:linear-gradient(135deg,#0b6e84,#12e2ff)">01</div>
-            <div><div class="ptag" style="color:var(--teal)">Brand Strategy · Competitive Intelligence</div><div class="pname">AI Brand Audit &amp; Competitive Intelligence Report</div><div class="pbrand">Red Bull · April 2025</div></div>
-          </div>
-          <p class="pdesc">A 14-page professional brand audit mapping competitive positioning, consumer personas, messaging gaps, and strategic recommendations using AI-assisted web intelligence and structured analytical frameworks.</p>
-          <div class="kpis">
-            <div><span class="kv" style="color:var(--teal)">14</span><span class="kl">Page Report</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--teal)">04</span><span class="kl">Competitors</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--teal)">03</span><span class="kl">Personas</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--teal)">09</span><span class="kl">Sections</span></div>
-          </div>
-          <div class="cl">Deliverables</div>
-          <div class="chips"><span class="chip">[ PDF ] Brand Audit</span><span class="chip">[ SYS ] Reusable Skill</span></div>
-          <div class="cl">Key Findings</div>
-          <div class="fi"><div class="fd" style="background:var(--teal)"></div><span>Content over-indexes on male/Western audiences — missing 40% of market captured by Celsius &amp; Alani Nu</span></div>
-          <div class="fi"><div class="fd" style="background:var(--teal)"></div><span>Zero ingredient transparency is a Gen Z trust liability: 73% of consumers check labels before purchasing</span></div>
-          <div class="fi"><div class="fd" style="background:var(--teal)"></div><span>TikTok-native content lags despite 90.5M+ organic fan posts already generating reach</span></div>
-        </div>
-        <div class="pfoot"><a href="RedBull_Brand_Audit_LuisFlores.pdf" class="bx bs" target="_blank" rel="noopener">▸ Open Brand Audit</a></div>
-      </div>
-
-      <div class="hud pcard fi-anim">
-        <div class="pci">
-          <div class="phead">
-            <div class="pnum" style="background:linear-gradient(135deg,#6d28d9,#a855f7)">02</div>
-            <div><div class="ptag" style="color:var(--purple)">Content Strategy · AI Workflow Systems</div><div class="pname">AI Content Engine + 30-Day Editorial System</div><div class="pbrand">Red Bull · April 2025</div></div>
-          </div>
-          <p class="pdesc">A complete AI-augmented content production system — evolved brand voice framework, 30-day multi-platform editorial calendar, 7-template AI prompt library, and documented human-refinement workflow.</p>
-          <div class="kpis">
-            <div><span class="kv" style="color:var(--purple)">30</span><span class="kl">Days</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--purple)">03</span><span class="kl">Platforms</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--purple)">07</span><span class="kl">AI Prompts</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--purple)">05</span><span class="kl">Before/After</span></div>
-          </div>
-          <div class="cl">Deliverables</div>
-          <div class="chips"><span class="chip">[ DOCX ] Voice Guide</span><span class="chip">[ XLSX ] 30-Day Calendar</span><span class="chip">[ PDF ] Case Study</span></div>
-          <div class="cl">What This Demonstrates</div>
-          <div class="fi"><div class="fd" style="background:var(--purple)"></div><span>5 evolved voice attributes, do's/don'ts table, platform-specific tone matrix, vocabulary guide</span></div>
-          <div class="fi"><div class="fd" style="background:var(--purple)"></div><span>Every calendar day has a specific hook, caption draft, CTA, and visual direction — zero placeholder text</span></div>
-          <div class="fi"><div class="fd" style="background:var(--purple)"></div><span>Documents what AI produced vs. what human judgment changed — the critical differentiator</span></div>
-        </div>
-        <div class="pfoot">
-          <a href="RedBull_ContentEngine_CaseStudy_LuisFlores.pdf" class="bx bs" style="background:linear-gradient(135deg,#6d28d9,#a855f7)" target="_blank" rel="noopener">▸ Case Study</a>
-          <a href="RedBull_BrandVoiceGuide_LuisFlores.docx" class="bx bo" style="border-color:rgba(168,85,247,.28);color:var(--purple)" download>▸ Voice Guide</a>
-          <a href="RedBull_ContentCalendar_LuisFlores.xlsx" class="bx bo" style="border-color:rgba(168,85,247,.28);color:var(--purple)" download>▸ Calendar</a>
-        </div>
-      </div>
-
-      <div class="hud pcard fi-anim">
-        <div class="pci">
-          <div class="phead">
-            <div class="pnum" style="background:linear-gradient(135deg,#b45309,#f5c842)">03</div>
-            <div><div class="ptag" style="color:var(--amber)">Growth Marketing · Funnel Analytics · CRO</div><div class="pname">Growth Funnel Audit &amp; A/B Test Roadmap</div><div class="pbrand">LEGO · April 2025</div></div>
-          </div>
-          <p class="pdesc">Full-funnel audit mapping awareness → conversion → retention, benchmarking 18 KPIs against DTC industry standards using real SimilarWeb data, NPS (59), and revenue figures. Delivered 7 prioritized A/B tests with hypotheses, metrics, and lift estimates.</p>
-          <div class="kpis">
-            <div><span class="kv" style="color:var(--amber)">18</span><span class="kl">KPIs Benchmarked</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--amber)">07</span><span class="kl">A/B Tests Designed</span></div><div class="ks"></div>
-            <div><span class="kv" style="color:var(--amber)">10–15%</span><span class="kl">Proj. CVR Lift</span></div>
-          </div>
-          <div class="cl">Deliverables</div>
-          <div class="chips"><span class="chip">[ PDF ] Funnel Audit</span><span class="chip">[ XLSX ] A/B Roadmap</span></div>
-          <div class="cl">Critical Findings</div>
-          <div class="fi"><div class="fd" style="background:var(--amber)"></div><span>LEGO converts 2.5–4% of visitors despite 5.28 pages/visit and 49.9% direct traffic — at median despite exceptional brand equity</span></div>
-          <div class="fi"><div class="fd" style="background:var(--amber)"></div><span>AOV sits below premium DTC benchmark — cross-sell mechanics underdeveloped for an 840-SKU catalogue</span></div>
-          <div class="fi"><div class="fd" style="background:var(--amber)"></div><span>Top-priority test: a product recommendation quiz projected to lift checkout CVR by 10–15%, the highest-impact test in the roadmap</span></div>
-        </div>
-        <div class="pfoot">
-          <a href="LEGO_GrowthFunnelAudit_LuisFlores.pdf" class="bx bs" style="background:linear-gradient(135deg,#b45309,#f5c842)" target="_blank" rel="noopener">▸ Funnel Audit</a>
-          <a href="LEGO_ABTestRoadmap_LuisFlores.xlsx" class="bx bo" style="border-color:rgba(245,200,66,.28);color:var(--amber)" download>▸ A/B Roadmap</a>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -420,17 +351,17 @@ footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1
 <section id="certifications">
   <div class="wrap">
     <div class="sh fi-anim">
-      <p class="slabel">Credentials</p>
+      <p class="slabel">// Credentials</p>
       <h2 class="stitle">Certifications</h2>
       <p class="ssub">Industry-recognized credentials in digital marketing, inbound strategy, and AI.</p>
     </div>
     <div class="cgrid fi-anim">
-      <div class="hud ccard"><div class="cbadgeid">HS</div><div><div class="cname">Digital Marketing Certified</div><div class="ciss">HubSpot Academy</div><div class="cdet">SEO · Social Media · Video · Advertising</div><div class="cstat"><span class="dot" style="background:var(--green)"></span>Active · Exp. Oct 2026</div></div></div>
-      <div class="hud ccard"><div class="cbadgeid">HS</div><div><div class="cname">Inbound Marketing Certified</div><div class="ciss">HubSpot Academy</div><div class="cdet">Content · Lead Conversion · Nurturing</div><div class="cstat"><span class="dot" style="background:var(--green)"></span>Active · Exp. Nov 2027</div></div></div>
-      <div class="hud ccard"><div class="cbadgeid">ST</div><div><div class="cname">Digital Marketing Simternship®</div><div class="ciss">Stukent</div><div class="cdet">Paid Search · Display · A/B Testing · KPIs</div><div class="cstat"><span class="dot" style="background:var(--green)"></span>Completed Nov 2025</div></div></div>
-      <div class="hud ccard"><div class="cbadgeid">LI</div><div><div class="cname">AI for Marketing</div><div class="ciss">LinkedIn Learning</div><div class="cdet">AI for Business · Digital Marketing</div><div class="cstat"><span class="dot" style="background:var(--green)"></span>Completed Nov 2025</div></div></div>
-      <div class="hud ccard"><div class="cbadgeid">LI</div><div><div class="cname">Increase Sales with ChatGPT</div><div class="ciss">LinkedIn Learning</div><div class="cdet">AI for Business · Sales Effectiveness</div><div class="cstat"><span class="dot" style="background:var(--green)"></span>Completed Apr 2025</div></div></div>
-      <div class="hud ccard"><div class="cbadgeid">MS</div><div><div class="cname">MOS Word Certification</div><div class="ciss">Microsoft Office Specialist</div><div class="cdet">Word · Document Production</div><div class="cstat"><span class="dot" style="background:var(--green)"></span>Active</div></div></div>
+      <div class="hud ccard"><div class="cbadgeid">HS</div><div><div class="cname">Digital Marketing Certified</div><div class="ciss">HubSpot Academy</div><div class="cdet">SEO · Social Media · Video · Advertising</div><div class="cstat"><span class="dot"></span>Active · Exp. Oct 2026</div></div></div>
+      <div class="hud ccard"><div class="cbadgeid">HS</div><div><div class="cname">Inbound Marketing Certified</div><div class="ciss">HubSpot Academy</div><div class="cdet">Content · Lead Conversion · Nurturing</div><div class="cstat"><span class="dot"></span>Active · Exp. Nov 2027</div></div></div>
+      <div class="hud ccard"><div class="cbadgeid">ST</div><div><div class="cname">Digital Marketing Simternship®</div><div class="ciss">Stukent</div><div class="cdet">Paid Search · Display · A/B Testing · KPIs</div><div class="cstat"><span class="dot"></span>Completed Nov 2025</div></div></div>
+      <div class="hud ccard"><div class="cbadgeid">LI</div><div><div class="cname">AI for Marketing</div><div class="ciss">LinkedIn Learning</div><div class="cdet">AI for Business · Digital Marketing</div><div class="cstat"><span class="dot"></span>Completed Nov 2025</div></div></div>
+      <div class="hud ccard"><div class="cbadgeid">LI</div><div><div class="cname">Increase Sales with ChatGPT</div><div class="ciss">LinkedIn Learning</div><div class="cdet">AI for Business · Sales Effectiveness</div><div class="cstat"><span class="dot"></span>Completed Apr 2025</div></div></div>
+      <div class="hud ccard"><div class="cbadgeid">MS</div><div><div class="cname">MOS Word Certification</div><div class="ciss">Microsoft Office Specialist</div><div class="cdet">Word · Document Production</div><div class="cstat"><span class="dot"></span>Active</div></div></div>
     </div>
   </div>
 </section>
@@ -438,9 +369,9 @@ footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1
 <!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
-    <div class="sh fi-anim"><p class="slabel">Capabilities</p><h2 class="stitle">Skills &amp; Tools</h2></div>
+    <div class="sh fi-anim"><p class="slabel">// Capabilities</p><h2 class="stitle">Skills &amp; Tools</h2></div>
     <div class="sgrid fi-anim">
-      <div class="hud spanel">
+      <div>
         <div class="sgt">AI &amp; Technology</div>
         <div class="si"><b>▸</b>Prompt Engineering (Claude, GPT-4o)</div>
         <div class="si"><b>▸</b>LLM API Integration</div>
@@ -450,25 +381,25 @@ footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1
         <div class="si"><b>▸</b>A/B Testing &amp; CRO</div>
         <div class="si"><b>▸</b>Python · Google Suite · MOS Word</div>
       </div>
-      <div class="hud spanel">
-        <div class="sgt" style="color:var(--purple);border-color:rgba(168,85,247,.2)">Marketing Strategy</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Brand Positioning &amp; Messaging</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Consumer Insights &amp; Research</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Content Strategy &amp; Production</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Inbound Marketing Methodology</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Growth Funnel Analysis &amp; CRO</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Competitive Intelligence</div>
-        <div class="si"><b style="color:var(--purple)">▸</b>Go-to-Market Strategy</div>
+      <div>
+        <div class="sgt">Marketing Strategy</div>
+        <div class="si"><b>▸</b>Brand Positioning &amp; Messaging</div>
+        <div class="si"><b>▸</b>Consumer Insights &amp; Research</div>
+        <div class="si"><b>▸</b>Content Strategy &amp; Production</div>
+        <div class="si"><b>▸</b>Inbound Marketing Methodology</div>
+        <div class="si"><b>▸</b>Growth Funnel Analysis &amp; CRO</div>
+        <div class="si"><b>▸</b>Competitive Intelligence</div>
+        <div class="si"><b>▸</b>Go-to-Market Strategy</div>
       </div>
-      <div class="hud spanel">
-        <div class="sgt" style="color:var(--amber);border-color:rgba(245,200,66,.2)">Soft Skills &amp; Languages</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>Analytical &amp; Detail-Oriented</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>Team Leadership &amp; Delegation</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>Cross-functional Collaboration</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>High-Volume Client Communication</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>Real-time Problem Solving</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>English (Native)</div>
-        <div class="si"><b style="color:var(--amber)">▸</b>Spanish (Advanced Conversational)</div>
+      <div>
+        <div class="sgt">Soft Skills &amp; Languages</div>
+        <div class="si"><b>▸</b>Analytical &amp; Detail-Oriented</div>
+        <div class="si"><b>▸</b>Team Leadership &amp; Delegation</div>
+        <div class="si"><b>▸</b>Cross-functional Collaboration</div>
+        <div class="si"><b>▸</b>High-Volume Client Communication</div>
+        <div class="si"><b>▸</b>Real-time Problem Solving</div>
+        <div class="si"><b>▸</b>English (Native)</div>
+        <div class="si"><b>▸</b>Spanish (Advanced Conversational)</div>
       </div>
     </div>
   </div>
@@ -477,247 +408,165 @@ footer{position:relative;z-index:1;text-align:center;padding:1.4rem;border-top:1
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <p class="slabel" style="text-align:center">Get In Touch</p>
+    <p class="slabel" style="text-align:center">// Get In Touch</p>
     <h2 class="stitle" style="text-align:center">Let's talk.</h2>
-    <p class="ssub" style="text-align:center;margin:0 auto 2.2rem;color:var(--gray)">Actively seeking brand, content, or growth marketing roles for Summer/Fall 2026. If you're building something interesting — reach out.</p>
+    <p class="ssub" style="text-align:center;margin:0 auto 2.1rem">Actively seeking brand, content, or growth marketing roles for Summer/Fall 2026. If you're building something interesting — reach out.</p>
     <div class="clinks">
       <a href="mailto:lfloresc865@gmail.com" class="clink">✉ lfloresc865@gmail.com</a>
-      <a href="mailto:laf3288@utexas.edu" class="clink">🎓 laf3288@utexas.edu</a>
+      <a href="mailto:laf3288@utexas.edu" class="clink">✉ laf3288@utexas.edu</a>
+      <a href="https://linkedin.com/in/luisflores" class="clink" target="_blank" rel="noopener">▸ LinkedIn</a>
       <a href="Luis_Flores_Marketing_Resume.pdf" class="clink" target="_blank" rel="noopener">▸ Resume</a>
     </div>
-    <p class="cnote">Austin, TX · Available May 2026 · Open to remote &amp; hybrid · (956) 662-3710</p>
+    <p class="cnote">AUSTIN, TX · AVAILABLE MAY 2026 · OPEN TO REMOTE &amp; HYBRID · (956) 662-3710</p>
   </div>
 </section>
-<footer><p>LUIS FLORES // AI-INTEGRATED MARKETING // UT AUSTIN BBA 2026</p></footer>
-
-<!-- BOTTOM SCROLL GAUGE -->
-<div id="gauge-bar">
-  <div class="gauge">
-    <span class="gauge-lbl">Page L</span>
-    <div class="gauge-track"><div class="gauge-fill" id="gaugeFillL"></div></div>
-  </div>
-  <span class="gauge-pct" id="gaugePct">0%</span>
-  <div class="gauge">
-    <div class="gauge-track"><div class="gauge-fill" id="gaugeFillR"></div></div>
-    <span class="gauge-lbl" style="text-align:right">Page R</span>
-  </div>
-</div>
+<footer><p>LUIS FLORES · AI-INTEGRATED MARKETING · UT AUSTIN BBA 2026</p></footer>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   OPTIMIZED GALAXY CANVAS (starfield)
-══════════════════════════════════════════════════════════════ */
+/* ══ MONOCHROME DEEP-SPACE CANVAS ═══════════════════════════════════
+   - Pure grayscale: stars, nebula haze, galaxy band, shooting stars
+   - 30fps cap, pre-rendered background layer, batched draws
+   - Zero network requests, pauses when tab hidden
+═══════════════════════════════════════════════════════════════════ */
 const cv=document.getElementById('sf');
 const cx=cv.getContext('2d',{alpha:false});
-let stars=[],shoots=[],W,H,frame=0,rafId;
+let stars=[],shoots=[],W,H,frame=0,rafId,bgCanvas;
 
 function resize(){
   W=cv.width=window.innerWidth;
   H=cv.height=window.innerHeight;
   mkStars();
-  drawMW();
+  drawBG();
 }
-let mwCanvas;
-function drawMW(){
-  mwCanvas=new OffscreenCanvas(W,H);
-  const mc=mwCanvas.getContext('2d');
-  mc.clearRect(0,0,W,H);
-  const g=mc.createLinearGradient(0,H*.12,W,H*.88);
-  g.addColorStop(0,'rgba(0,0,0,0)');
-  g.addColorStop(.28,'rgba(20,18,80,.13)');
-  g.addColorStop(.5,'rgba(30,14,90,.16)');
-  g.addColorStop(.72,'rgba(10,40,88,.12)');
-  g.addColorStop(1,'rgba(0,0,0,0)');
+
+/* Pre-render nebula/galaxy band once — composited each frame at zero cost */
+function drawBG(){
+  bgCanvas=document.createElement('canvas');
+  bgCanvas.width=W;bgCanvas.height=H;
+  const mc=bgCanvas.getContext('2d');
+  mc.fillStyle='#000';mc.fillRect(0,0,W,H);
+  // Diagonal galaxy band — soft white haze
+  const g=mc.createLinearGradient(0,H*.1,W,H*.9);
+  g.addColorStop(0,'rgba(255,255,255,0)');
+  g.addColorStop(.3,'rgba(255,255,255,.028)');
+  g.addColorStop(.5,'rgba(255,255,255,.045)');
+  g.addColorStop(.7,'rgba(255,255,255,.028)');
+  g.addColorStop(1,'rgba(255,255,255,0)');
   mc.fillStyle=g;mc.fillRect(0,0,W,H);
-  [[W*.25,H*.38,W*.2,'rgba(45,14,95,.06)'],[W*.65,H*.6,W*.22,'rgba(10,64,112,.07)']].forEach(([x,y,r,c])=>{
+  // Grayscale nebula blobs
+  [[W*.22,H*.35,W*.2,.05],[W*.68,H*.62,W*.24,.045],[W*.5,H*.15,W*.15,.03]].forEach(([x,y,r,a])=>{
     const ng=mc.createRadialGradient(x,y,0,x,y,r);
-    ng.addColorStop(0,c);ng.addColorStop(1,'rgba(0,0,0,0)');
+    ng.addColorStop(0,`rgba(255,255,255,${a})`);
+    ng.addColorStop(1,'rgba(255,255,255,0)');
     mc.fillStyle=ng;mc.beginPath();mc.arc(x,y,r,0,Math.PI*2);mc.fill();
   });
+  // Dust speckle — a few hundred faint static micro-stars baked in
+  for(let i=0;i<Math.floor(W*H/9000);i++){
+    mc.fillStyle=`rgba(255,255,255,${.03+Math.random()*.07})`;
+    mc.fillRect(Math.random()*W,Math.random()*H,1,1);
+  }
 }
+
 function mkStars(){
   stars=[];
   const n=Math.floor(W*H/2200);
   for(let i=0;i<n;i++){
     const s=Math.random();
-    stars.push({x:Math.random()*W,y:Math.random()*H,r:s<.72?.35:s<.9?.65:1.0,
-      base:.1+Math.random()*.55,spd:.003+Math.random()*.007,ph:Math.random()*Math.PI*2,
-      hue:Math.random()<.68?195:Math.random()<.5?210:40});
+    stars.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:s<.72?.35:s<.9?.65:1.05,
+      base:.1+Math.random()*.55,
+      spd:.003+Math.random()*.007,
+      ph:Math.random()*Math.PI*2
+    });
   }
 }
+
 function shoot(){
   if(shoots.length>=2)return;
   shoots.push({x:Math.random()*W*.75,y:Math.random()*H*.35,vx:3.5+Math.random()*4,vy:1.2+Math.random()*2.5,len:80+Math.random()*110,a:1,life:0});
 }
+
 function draw(){
   frame++;
   if(frame%2!==0){rafId=requestAnimationFrame(draw);return;}
-  cx.fillStyle='#020408';cx.fillRect(0,0,W,H);
-  if(mwCanvas)cx.drawImage(mwCanvas,0,0);
+
+  if(bgCanvas)cx.drawImage(bgCanvas,0,0);
+  else{cx.fillStyle='#000';cx.fillRect(0,0,W,H);}
+
+  // Twinkling stars — pure white, varying alpha
   const t=frame*.005;
   stars.forEach(s=>{
     const a=s.base+(1-s.base)*.45*(1+Math.sin(t*s.spd*50+s.ph));
-    cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    cx.fillStyle=`hsla(${s.hue},70%,97%,${a})`;cx.fill();
-    if(s.r>.85){cx.beginPath();cx.arc(s.x,s.y,s.r*2.8,0,Math.PI*2);cx.fillStyle=`hsla(${s.hue},80%,90%,${a*.08})`;cx.fill();}
+    cx.beginPath();
+    cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    cx.fillStyle=`rgba(255,255,255,${a})`;
+    cx.fill();
+    if(s.r>.85){
+      cx.beginPath();cx.arc(s.x,s.y,s.r*2.8,0,Math.PI*2);
+      cx.fillStyle=`rgba(255,255,255,${a*.08})`;cx.fill();
+    }
   });
+
+  // Shooting stars — white streaks
   shoots=shoots.filter(s=>s.a>.01);
   shoots.forEach(s=>{
     s.x+=s.vx;s.y+=s.vy;s.life++;s.a=Math.max(0,1-s.life/50);
     const tx=s.x-s.vx*(s.len/10),ty=s.y-s.vy*(s.len/10);
     const sg=cx.createLinearGradient(tx,ty,s.x,s.y);
-    sg.addColorStop(0,'rgba(18,226,255,0)');sg.addColorStop(.6,`rgba(18,226,255,${s.a*.35})`);sg.addColorStop(1,`rgba(255,255,255,${s.a})`);
-    cx.beginPath();cx.moveTo(tx,ty);cx.lineTo(s.x,s.y);cx.strokeStyle=sg;cx.lineWidth=1.4;cx.stroke();
+    sg.addColorStop(0,'rgba(255,255,255,0)');
+    sg.addColorStop(.6,`rgba(255,255,255,${s.a*.3})`);
+    sg.addColorStop(1,`rgba(255,255,255,${s.a})`);
+    cx.beginPath();cx.moveTo(tx,ty);cx.lineTo(s.x,s.y);
+    cx.strokeStyle=sg;cx.lineWidth=1.4;cx.stroke();
   });
+
   if(frame%420===0&&Math.random()>.35)shoot();
+
   rafId=requestAnimationFrame(draw);
 }
+
 document.addEventListener('visibilitychange',()=>{
-  if(document.hidden){cancelAnimationFrame(rafId)}else{rafId=requestAnimationFrame(draw)}
+  if(document.hidden){cancelAnimationFrame(rafId)}
+  else{rafId=requestAnimationFrame(draw)}
 });
+
 let resizeTimer;
-window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,200)});
-resize();draw();
-setTimeout(shoot,2000);setTimeout(shoot,5500);
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(resize,200);
+});
 
-/* ══════════════════════════════════════════════════════════════
-   MISSION CLOCK (T+ since page load)
-══════════════════════════════════════════════════════════════ */
-const t0=Date.now();
-function pad(n){return n.toString().padStart(2,'0')}
-function tickClock(){
-  const el=Math.floor((Date.now()-t0)/1000);
-  const hh=Math.floor(el/3600),mm=Math.floor((el%3600)/60),ss=el%60;
-  const node=document.getElementById('metClock');
-  if(node)node.textContent=`${pad(hh)}:${pad(mm)}:${pad(ss)}`;
-}
-setInterval(tickClock,1000);tickClock();
+resize();
+draw();
+setTimeout(shoot,2000);
+setTimeout(shoot,5500);
 
-/* ══════════════════════════════════════════════════════════════
-   LIVE ISS TELEMETRY + POLAR RADAR
-══════════════════════════════════════════════════════════════ */
-const AUSTIN={lat:30.2672,lon:-97.7431};
-function haversineKm(lat1,lon1,lat2,lon2){
-  const R=6371,toRad=d=>d*Math.PI/180;
-  const dLat=toRad(lat2-lat1),dLon=toRad(lon2-lon1);
-  const a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-}
-let issTrail=[],issLast=null,issSweep=0,issOnline=false,radarRaf;
-const radarCv=document.getElementById('issRadar');
-const rcx=radarCv?radarCv.getContext('2d'):null;
-
-function fmt(n,d=0){return Number.isFinite(n)?n.toLocaleString(undefined,{maximumFractionDigits:d,minimumFractionDigits:d}):'—'}
-
-async function fetchISS(){
-  try{
-    const res=await fetch('https://api.wheretheiss.at/v1/satellites/25544',{cache:'no-store'});
-    if(!res.ok)throw new Error('bad status');
-    const d=await res.json();
-    issOnline=true;
-    issLast={lat:d.latitude,lon:d.longitude};
-    issTrail.push(issLast);
-    if(issTrail.length>18)issTrail.shift();
-    const range=haversineKm(d.latitude,d.longitude,AUSTIN.lat,AUSTIN.lon);
-    document.getElementById('tAlt').innerHTML=fmt(d.altitude,1)+'<small>KM</small>';
-    document.getElementById('tVel').innerHTML=fmt(d.velocity,0)+'<small>KM/H</small>';
-    document.getElementById('tVis').textContent=(d.visibility||'—').toUpperCase();
-    document.getElementById('tLat').innerHTML=fmt(d.latitude,2)+'<small>°</small>';
-    document.getElementById('tLon').innerHTML=fmt(d.longitude,2)+'<small>°</small>';
-    document.getElementById('tRange').innerHTML=fmt(range,0)+'<small>KM</small>';
-    document.getElementById('teleUpdated').textContent='Last fix: '+new Date().toLocaleTimeString();
-    document.getElementById('radarStatus').textContent='TRACKING';
-    const rd=document.getElementById('radarDot');
-    if(rd){rd.style.background='var(--green)';rd.style.boxShadow='0 0 8px var(--green)'}
-  }catch(e){
-    issOnline=false;
-    document.getElementById('radarStatus').textContent='SIGNAL LOST';
-    document.getElementById('teleUpdated').textContent='Connection failed — retrying…';
-    const rd=document.getElementById('radarDot');
-    if(rd){rd.style.background='var(--red)';rd.style.boxShadow='0 0 8px var(--red)'}
-  }
-}
-
-function drawRadar(){
-  if(rcx){
-    const w=radarCv.width,h=radarCv.height,cxp=w/2,cyp=h/2,maxR=Math.min(w,h)/2-10;
-    rcx.clearRect(0,0,w,h);
-    // concentric rings
-    rcx.strokeStyle='rgba(18,226,255,.22)';rcx.lineWidth=1;
-    [.34,.67,1].forEach(f=>{rcx.beginPath();rcx.arc(cxp,cyp,maxR*f,0,Math.PI*2);rcx.stroke()});
-    // crosshair
-    rcx.strokeStyle='rgba(18,226,255,.14)';
-    rcx.beginPath();rcx.moveTo(cxp-maxR,cyp);rcx.lineTo(cxp+maxR,cyp);
-    rcx.moveTo(cxp,cyp-maxR);rcx.lineTo(cxp,cyp+maxR);rcx.stroke();
-    // sweep
-    issSweep+=0.012;
-    const sweepGrad=rcx.createConicGradient?rcx.createConicGradient(issSweep-0.9,cxp,cyp):null;
-    if(sweepGrad){
-      sweepGrad.addColorStop(0,'rgba(18,226,255,0)');
-      sweepGrad.addColorStop(.92,'rgba(18,226,255,0)');
-      sweepGrad.addColorStop(1,'rgba(18,226,255,.28)');
-      rcx.save();rcx.beginPath();rcx.arc(cxp,cyp,maxR,0,Math.PI*2);rcx.fillStyle=sweepGrad;rcx.fill();rcx.restore();
-    }
-    // trail
-    issTrail.forEach((p,i)=>{
-      const ang=((p.lon+180)/360)*Math.PI*2-Math.PI/2;
-      const rad=(1-Math.abs(p.lat)/90)*maxR;
-      const x=cxp+Math.cos(ang)*rad,y=cyp+Math.sin(ang)*rad;
-      const alpha=(i+1)/issTrail.length*.5;
-      rcx.beginPath();rcx.arc(x,y,2,0,Math.PI*2);rcx.fillStyle=`rgba(18,226,255,${alpha})`;rcx.fill();
-    });
-    // current position
-    if(issLast){
-      const ang=((issLast.lon+180)/360)*Math.PI*2-Math.PI/2;
-      const rad=(1-Math.abs(issLast.lat)/90)*maxR;
-      const x=cxp+Math.cos(ang)*rad,y=cyp+Math.sin(ang)*rad;
-      rcx.beginPath();rcx.arc(x,y,4.5,0,Math.PI*2);
-      rcx.fillStyle=issOnline?'#12e2ff':'#ff5c5c';
-      rcx.shadowColor=issOnline?'#12e2ff':'#ff5c5c';rcx.shadowBlur=12;
-      rcx.fill();rcx.shadowBlur=0;
-    }
-    // center dot (observer-ish reference)
-    rcx.beginPath();rcx.arc(cxp,cyp,2,0,Math.PI*2);rcx.fillStyle='rgba(234,246,255,.5)';rcx.fill();
-  }
-  radarRaf=requestAnimationFrame(drawRadar);
-}
-
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!reduceMotion)drawRadar();
-fetchISS();
-setInterval(fetchISS,8000);
-
-/* ══════════════════════════════════════════════════════════════
-   SCROLL FADE-IN
-══════════════════════════════════════════════════════════════ */
+/* ── Scroll fade-in ── */
 const io=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}})
 },{threshold:.07,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fi-anim').forEach(el=>io.observe(el));
 
-/* ══════════════════════════════════════════════════════════════
-   ACTIVE NAV + SCROLL GAUGE
-══════════════════════════════════════════════════════════════ */
+/* ── Active nav ── */
 const secs=document.querySelectorAll('section[id]');
 const nls=document.querySelectorAll('.nlinks a');
-const gL=document.getElementById('gaugeFillL'),gR=document.getElementById('gaugeFillR'),gP=document.getElementById('gaugePct');
 let ticking=false;
-function onScroll(){
-  const y=window.scrollY+70;
-  secs.forEach(s=>{
-    if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
-      nls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+s.id));
-    }
+window.addEventListener('scroll',()=>{
+  if(ticking)return;
+  ticking=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY+70;
+    secs.forEach(s=>{
+      if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+        nls.forEach(a=>{
+          a.classList.toggle('active',a.getAttribute('href')==='#'+s.id);
+        });
+      }
+    });
+    ticking=false;
   });
-  const max=document.documentElement.scrollHeight-window.innerHeight;
-  const pct=max>0?Math.min(100,Math.max(0,(window.scrollY/max)*100)):0;
-  if(gL)gL.style.width=pct+'%';
-  if(gR)gR.style.width=pct+'%';
-  if(gP)gP.textContent=Math.round(pct)+'%';
-  ticking=false;
-}
-window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}});
-onScroll();
+});
 </script>
 </body>
 </html>
